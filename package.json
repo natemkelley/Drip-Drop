@@ -2,10 +2,10 @@
     "name": "drip-drop",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",
@@ -18,9 +18,15 @@
     },
     "homepage": "https://github.com/natemkelley/Drip-Drop#readme",
     "dependencies": {
+        "body-parser": "^1.18.3",
         "chart.js": "^2.7.3",
+        "ejs": "^2.6.1",
         "express": "^4.16.4",
+        "fs": "0.0.1-security",
         "http": "0.0.0",
+        "path": "^0.12.7",
+        "python-shell": "^1.0.6",
+        "request": "^2.88.0",
         "socket.io": "^2.1.1"
     }
 }
