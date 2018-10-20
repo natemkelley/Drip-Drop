@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 //routes
 var routes = require('./routes/index');
 
-
 //Socket IO addon
 var app = express();
 var http = require('http').Server(app);
