@@ -1,0 +1,26 @@
+.settings {
+    border-right: 1px solid #e3e3e3;
+    height: 86vh;
+    position: fixed;
+}
+
+.settings-section {
+    margin-top: 10px;
+}
+
+.charts{
+    margin-left: 26%!important;
+}
+
+.flow-meter-section {
+    position: absolute;
+    width: 90%;
+    bottom: 0;
+}
+
+.flow-meter {
+    background-color: gainsboro;
+    height: 200px;
+    width: 100%;
+    bottom: 0;
+}

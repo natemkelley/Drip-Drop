@@ -10,7 +10,6 @@ var chartColors = {
     grey: 'rgb(201, 203, 207)'
 }
 
-
 exports.test = function () {
     var ctx = "myChart";
 
@@ -49,10 +48,10 @@ exports.test = function () {
 				}]
         },
         options: {
-            responsive: false,
+            responsive: true,
             title: {
                 display: true,
-                text: 'Chart.js Line Chart'
+                text: 'Water Usage'
             },
             tooltips: {
                 mode: 'index',
@@ -85,7 +84,6 @@ exports.test = function () {
 
     return chartParams
 }
-
 
 function randomScalingFactor() {
     var max = 10;
