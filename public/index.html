@@ -14,7 +14,7 @@
 
 <body>
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <div class="nav-wrapper container center"><a id="logo-container" href="#" class="nav-logo">DripDrop Water Management</a>
 
         </div>
     </nav>
@@ -43,13 +43,27 @@
                         <label for="icon_prefix">Gallons</label>
                     </div>
                 </div>
-                <div class="flow-meter-section">
-                    <div class="flow-meter"></div>
+
+
+                <button class="btn waves-effect light-blue lighten-1 waves-light save-changes disabled" type="submit" name="action">Save Changes
+                    <i class="material-icons right">send</i>
+                </button>
+
+
+                <div class="flow-meter-section ">
+                    <div class="flow-meter pink lighten-2"></div>
                 </div>
             </div>
 
-            <div class="col s8 charts">
-                <canvas id="myChart" width="800" height="400"></canvas>
+            <div class="col s9 charts">
+                <div class="row"> <canvas id="myChart" width="800" height="400"></canvas></div>
+
+                <div class="section">
+                    <div class="col s6"></div>
+                    <div class="col s6"></div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -59,7 +73,7 @@
 <script src="js/buildChart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/pageFunctionality.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 
 </html>
