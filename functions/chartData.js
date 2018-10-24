@@ -80,8 +80,6 @@ exports.test = function () {
         }
     }
 
-
-
     return chartParams
 }
 

@@ -4,15 +4,12 @@ var request = require('request')
 var path = require('path');
 const fs = require('fs');
 var bodyParser = require('body-parser');
+var app = express();
+var port = 3000;
 
 //routes
 var routes = require('./routes/index');
-
-//Socket IO addon
-var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = 3000;
 
 app.use('/', routes);
 app.use(express.static(path.join(__dirname, 'public')));

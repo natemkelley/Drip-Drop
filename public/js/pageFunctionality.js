@@ -2,6 +2,7 @@
 $(document).ready(function () {
     $('select').formSelect();
     refreshInputs();
+    pushpin();
 });
 
 (function () {
@@ -29,5 +30,16 @@ function refreshInputs() {
     $("select option:selected").each(function () {
         var val = ($(this).val());
         $('.input-' + val + '-section').show()
+    });
+}
+
+function pushpin() {
+    $('.pushpin-demo-nav').each(function () {
+        var $this = $(this);
+        var $target = $('#' + $(this).attr('data-target'));
+        $this.pushpin({
+            top: $target.offset().top,
+            bottom: $target.offset().top + $target.outerHeight() - $this.height()
+        });
     });
 }
