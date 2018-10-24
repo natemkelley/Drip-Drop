@@ -12,7 +12,7 @@ constant = 0.000015
 time_new = 0.0
 
 while True:
-	time_new = time.time() + 1 #+60 = 1 minute
+	time_new = time.time() + 3 #+60 = 1 minute
 	rate_cnt = 0
 	
 	while time.time() <= time_new:
