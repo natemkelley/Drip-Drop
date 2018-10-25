@@ -3,6 +3,7 @@ var firebase = require('firebase');
 var compute = require('./compute.js');
 var fs = require('fs');
 
+//firebase config
 var config = {
     apiKey: "AIzaSyDJIPWAjanHdO9WBdmb5cBhaRjSVbNdpYk",
     authDomain: "drip-drop-2d311.firebaseapp.com",
@@ -12,28 +13,24 @@ var config = {
     messagingSenderId: "335132131853"
 };
 firebase.initializeApp(config);
-
 var rootRef = firebase.database().ref();
+
+
 rootRef.on("value", function (snapshot) {
+    console.log('received firebase')
     if (snapshot.val() == null) {
         massInputDummyData();
     } else {
-
+        //var status = compute.startCompute(snapshot.val());
     }
 })
+        massInputDummyData();
 
 
-exports.test = function () {
-    return 'yasss'
-}
-
-var XXX = 0;
-var success = 0;
 var tried = 0;
+var success = 0;
 
 function dummyData() {
-    XXX++;
-    console.log(XXX)
     var jsondata = {};
     var year = 2018;
 
@@ -56,9 +53,8 @@ function dummyData() {
                         var day = randomDay();
                         var minute = randomMinute();
                         var hour = randomHour();
-                        var stringDot = createStringDot(year, month, day, hour, minute, second)
-                        setDat(stringDot, data)
 
+                        var stringDot = createStringDot(d);
                         writeDummyData(stringDot, data)
                     }
                 }
@@ -79,13 +75,11 @@ function dummyData() {
         schema[pList[len - 1]] = value;
     }
 
-    function createStringDot(year, month, day, hour, minute, second) {
-        var stringDot = year.toString();
-        stringDot += "." + month.toString();
-        stringDot += "." + day.toString();
-        stringDot += "." + hour.toString();
-        stringDot += "." + minute.toString();
-        stringDot += "." + second.toString();
+    function createStringDot(d) {
+        var randoPipe = Math.floor(Math.random() * 2);
+        var pipe = "pipe" + randoPipe.toString();
+        var millseconds = d.getTime();
+        var stringDot = pipe + "/" + millseconds;
         return stringDot
     }
 
@@ -133,14 +127,9 @@ function dummyData() {
     }
 
     function writeDummyData(stringDot, data) {
-        var pathSave = stringDot.replace(/\./g, "/");
-        var randoPipe = Math.floor(Math.random() * 2);
-        var pipe = "pipe" + randoPipe.toString();
-        var pathSave = pipe + "/" + pathSave;
         tried++;
-
         if (data.timestamp > 10) {
-            firebase.database().ref(pathSave).set(data, function (error) {
+            firebase.database().ref(stringDot).set(data, function (error) {
                 if (error) {
                     console.log(error)
                 } else {
@@ -153,7 +142,7 @@ function dummyData() {
     }
 }
 
-function massInputDummyData() {    
+function massInputDummyData() {
     for (xxx = 0; xxx < 15; xxx++) {
         setTimeout(function () {
             dummyData()

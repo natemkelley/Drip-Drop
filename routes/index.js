@@ -3,20 +3,21 @@ var router = express.Router();
 var PythonShell = require('python-shell');
 var firebaseApp = require('../functions/firebase.js');
 var chartData = require('../functions/chartData.js');
-var chartData = require('../functions/chartData.js');
+var getData = require('../functions/getData.js');
 
 
-router.get('/test', function (req, res, next) {
-    var sendBack = "hey";
-    var result = firebaseApp.test();
-    var result2 = chartData.test();
+router.get('/wholeDataSet', function (req, res, next) {
+    var result = getData.getWholeDataSet();
+    res.send(result);
+});
 
-    res.send(sendBack);
+router.get('/getPipe1AvTime30', function (req, res, next) {
+    var result = getData.getPipe1AvTime30();
+    res.send(result);
 });
 
 router.get('/chart', function (req, res, next) {
     var result2 = chartData.test();
-
     res.send(result2);
 });
 
