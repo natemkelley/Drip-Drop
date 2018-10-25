@@ -21,10 +21,9 @@ rootRef.on("value", function (snapshot) {
     if (snapshot.val() == null) {
         massInputDummyData();
     } else {
-        //var status = compute.startCompute(snapshot.val());
+        var status = compute.startCompute(snapshot.val());
     }
 })
-        massInputDummyData();
 
 
 var tried = 0;

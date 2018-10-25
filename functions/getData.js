@@ -23,7 +23,7 @@ exports.getWholeDataSet = function () {
 
 exports.setPipe1AvTime30 = function (data) {
     PIPE1AVTIME30 = data
-    console.log('getData -> setPipe1AvTime30')
+    console.log('setData -> setPipe1AvTime30')
 }
 
 exports.getPipe1AvTime30 = function () {

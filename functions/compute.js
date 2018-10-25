@@ -10,8 +10,6 @@ exports.startCompute = function (data) {
     //compute function
     pipesavtime30(data)
 
-
-
     return 'updated data set'
 }
 exports.returnWholeDataset = function (data) {
@@ -20,55 +18,83 @@ exports.returnWholeDataset = function (data) {
 }
 
 async function pipesavtime30(data) {
-    console.log('pipesavtime30')
+    var pipes = pipeNames(data);
+    var returnJSON = {};
+    var stagingArray = [];
 
-    var numberOfPipes = Object.keys(data).length;
-    var pipesName = Object.keys(data);
+    for (var i = 0; i < pipes.length; i++) {
+        var obj = data[pipes[i]];
+        var sortedObj = sortByDate(obj);
+        var checkDate = "";
+        var dataPointCount = 0;
+        var unique = false;
+        var theDailyAverage = 0;
+        var theDailyTotal = 0;
+        var dayCount = 0;
+        for (var key in sortedObj) {
+            var date = createDate(sortedObj[key].timestamp);
+            var objLiter = sortedObj[key].liters;
 
-    for (var pipeNum = 0; pipeNum < numberOfPipes; pipeNum++) {
-        var pipeName = pipesName[pipeNum];
-        var pipe = data[pipesName[pipeNum]];
-        console.log(pipeName);
-        var numberOfYears = Object.keys(pipe).length;
-        var yearsName = Object.keys(pipe);
+            if (date != checkDate) {
+                if (unique) {
+                    var dayData = {
+                        date: checkDate,
+                        dayAverage: theDailyAverage
+                    }
 
-        for (var yearNum = 0; yearNum < numberOfYears; yearNum++) {
-            var yearName = yearsName[yearNum];
-            var pipe = data[yearsName[yearName]];
+                    //var stringDot = createStringDot(i, dayData)
+                    //setDat(stringDot, dayData);
+                    stagingArray[dayCount] = dayData
+                    dayCount++;
+                    theDailyAverage = 0;
+                    theDailyTotal = 0;
+                    dataPointCount = 1;
+                    unique = false;
+                }
+            } else {
+                unique = true
+            }
+
+            dataPointCount++
+            theDailyTotal += objLiter;
+            theDailyAverage = ((theDailyTotal) / dataPointCount);
+            checkDate = date;
         }
 
+        returnJSON['pipe' + i] = limitTo30Days(stagingArray)
     }
 
+    getData.setPipe1AvTime30(returnJSON);
 
+    function limitTo30Days(data) {
+        var returnArry = data.slice(Math.max(data.length - 30, 1))
+        return returnArry
+    }
+}
 
-    /*for (month = 0; month < 11; month++) {
-        for (dayx = 0; dayx < 2; dayx++) {
-            for (hourx = 0; hourx < 2; hourx++) {
-                var hourRun = runOnHour();
-                for (minutex = 0; minutex < 2; minutex++) {
-                    var minuteRun = runOnMinute();
-                    for (second = 0; second < 2; second++) {
-                        var d = new Date(year, month, day, hour, minute, second, 0);
-                        var liters = 0.00;
-                        if (minuteRun && hourRun) {
-                            liters = randomLiterage();
-                        }
-                        var data = {
-                            liters: liters,
-                            timestamp: Date.parse(d)
-                        }
-                        var day = randomDay();
-                        var minute = randomMinute();
-                        var hour = randomHour();
-                        var stringDot = createStringDot(year, month, day, hour, minute, second)
-                        setDat(stringDot, data)
+function pipeNames(data) {
+    var pipesName = Object.keys(data);
+    return pipesName
+}
 
-                        writeDummyData(stringDot, data)
-                    }
-                }
-            }
-        }
-    }*/
+function createDate(dateObj) {
+    var dateObj = new Date(dateObj);
 
-    return 1
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    newdate = year + "/" + month + "/" + day;
+    return newdate
+}
+
+function sortByDate(obj) {
+    const ordered = {};
+    Object.keys(obj)
+        .sort()
+        .forEach(function (v, i) {
+            ordered[v] = obj[v];
+        });
+
+    return ordered
 }
