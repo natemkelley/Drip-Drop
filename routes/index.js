@@ -36,6 +36,20 @@ router.get('/chart-weekDay', function (req, res, next) {
     res.send(result);
 });
 
+router.get('/chart-nowPipe1', function (req, res, next) {
+    var result = chartData.nowPipe1();
+    res.send(result);
+});
+
+router.get('/chart-nowPipe2', function (req, res, next) {
+    var result = chartData.nowPipe2();
+    res.send(result);
+});
+
+router.get('/chart-totalByPipe', function (req, res, next) {
+    var result = chartData.totalByPipe();
+    res.send(result);
+});
 
 
 module.exports = router;

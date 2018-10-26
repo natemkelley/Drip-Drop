@@ -2,80 +2,6 @@ var Chart = require('chart.js');
 var getData = require('./getData.js');
 
 
-exports.test = function () {
-    var ctx = "myChart";
-
-    var chartParams = {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: chartColors.red,
-                borderColor: chartColors.red,
-                data: [
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor()
-					],
-                fill: false,
-				}, {
-                label: 'My Second dataset',
-                fill: false,
-                backgroundColor: chartColors.blue,
-                borderColor: chartColors.blue,
-                data: [
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor()
-					],
-				}]
-        },
-        options: {
-            responsive: true,
-            title: {
-                display: true,
-                text: 'Water Usage'
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Month'
-                    }
-					}],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Value'
-                    }
-					}]
-            }
-        }
-    }
-
-    chartParams.ctx = ctx
-    return chartParams
-}
-
 exports.avtime30 = function () {
     var ctx = "av30";
     var chartParams = {
@@ -288,7 +214,6 @@ exports.weekDay = function () {
 
     var data1 = getData.getPipe1Weekday();
     var data2 = getData.getPipe2Weekday();
-    console.log(data1)
     var label = makeWeekdayLabel(data1);
     var dataset1 = makeLitersWeekday(data1);
     var dataset2 = makeLitersWeekday(data2);
@@ -304,7 +229,7 @@ exports.weekDay = function () {
             },
             title: {
                 display: true,
-                text: 'Average Day Usage'
+                text: 'Day of Week Usage'
             }
         },
         scales: {
@@ -325,9 +250,175 @@ exports.weekDay = function () {
         }
     }
 
-     chartParams.data.datasets[0].data = dataset1
+    chartParams.data.datasets[0].data = dataset1
     chartParams.data.datasets[1].data = dataset2
     chartParams.data.labels = label
+    chartParams.ctx = ctx
+    return chartParams
+}
+exports.totalByPipe = function () {
+    var ctx = "totalByPipe";
+
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+					],
+                backgroundColor: [
+						chartColors.red,
+						chartColors.blue
+					],
+                label: 'Totals'
+				}],
+            labels: [
+					'Pipe 1',
+					'Pipe 2'
+				]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Total Usage over Time'
+            },
+            responsive: true,
+            layout: {
+                padding: {
+                    left: 15,
+                    right: 15,
+                    top: 15,
+                    bottom: 15
+                }
+            },
+            cutoutPercentage: 39
+        }
+    };
+    config.data.datasets[0].data = computePipeTotals()
+
+    config.ctx = ctx
+
+    return config
+}
+
+exports.nowPipe1 = function () {
+    var ctx = "nowPipe1";
+    var barChartData = {
+        labels: [],
+        datasets: [{
+                label: 'Pipe 1',
+                backgroundColor: chartColorsOpacity.red,
+                borderColor: chartColors.red,
+                borderWidth: 1,
+                data: []
+			}
+        ]
+    };
+
+    var chartParams = {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Current Usage - Pipe 1'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                display: false
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true,
+                display: false
+            },
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Liters'
+                }
+					}],
+            yAxes: [{
+                display: false,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Liters'
+                }
+					}]
+        }
+    }
+
+    chartParams.data.datasets[0].data = stumpDataNow();
+    chartParams.data.labels = stumpLabelNow();
+    chartParams.ctx = ctx
+    return chartParams
+}
+exports.nowPipe2 = function () {
+    var ctx = "nowPipe2";
+    var barChartData = {
+        labels: [],
+        datasets: [{
+                label: 'Pipe 1',
+                backgroundColor: chartColorsOpacity.blue,
+                borderColor: chartColors.blue,
+                borderWidth: 1,
+                data: []
+			}
+        ]
+    };
+
+    var chartParams = {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Current Usage - Pipe 2'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                display: false
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true,
+                display: false
+            },
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Liters'
+                }
+					}],
+            yAxes: [{
+                display: false,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Liters'
+                }
+					}]
+        }
+    }
+
+    chartParams.data.datasets[0].data = stumpDataNow();
+    chartParams.data.labels = stumpLabelNow();
     chartParams.ctx = ctx
     return chartParams
 }
@@ -346,7 +437,6 @@ var chartColors = {
     purple: 'rgb(153, 102, 255)',
     grey: 'rgb(201, 203, 207)'
 }
-
 var chartColorsOpacity = {
     red: 'rgba(255, 99, 132, 0.08)',
     orange: 'rgb(255, 159, 64)',
@@ -418,6 +508,42 @@ function makeLiterageBigday(data) {
     return dataPoints
 }
 
+function computePipeTotals(data) {
+    var returnArray = []
+
+    var pipe1 = getData.getPipe1Weekday();
+    var pipe2 = getData.getPipe2Weekday()
+
+    var total1 = 0;
+    var total2 = 0;
+
+    for (key in pipe1) {
+        var literage = pipe1[key];
+        for (key2 in literage) {
+            if (key2.includes('LiterCount')) {
+                total1 += literage[key2];
+            }
+        }
+    }
+
+    for (key in pipe2) {
+        var literage = pipe2[key];
+        for (key2 in literage) {
+            if (key2.includes('LiterCount')) {
+                total2 += literage[key2];
+            }
+        }
+    }
+
+    total1 = Math.round(total1 * 100) / 100;
+    total2 = Math.round(total2 * 100) / 100;
+
+    returnArray.push(total1)
+    returnArray.push(total2)
+
+    return returnArray
+}
+
 function makeLiterageMonthAv(data) {
     var dataPoints = [];
 
@@ -431,9 +557,7 @@ function makeLiterageMonthAv(data) {
 
 function makeWeekdayLabel(data) {
     var dataPoints = [];
-
     for (key in data) {
-        console.log(key)
         dataPoints.push(key)
     }
     return dataPoints
@@ -444,7 +568,52 @@ function makeLitersWeekday(data) {
 
     for (key in data) {
         var av = data[key].averageUse;
+        av = Math.round(av * 100) / 100;
+
         dataPoints.push(av)
     }
     return dataPoints
 }
+
+var CURRENTTIME = [0, 0, 0, 0, 0];
+
+function updatestumpLabelNow() {
+    var d = new Date();
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var second = d.getSeconds();
+    var time = hours + ":" + minutes + ":" + second;
+
+    CURRENTTIME.push(time);
+    for (i = 0; i < 5; i++) {
+        CURRENTTIME[i] = CURRENTTIME[i + 1];
+    }
+    CURRENTTIME.pop();
+
+    return CURRENTTIME
+}
+
+function stumpLabelNow() {
+    return CURRENTTIME;
+}
+var OLDDATAPOINT = [1, 1, 1, 1, 1];
+
+function updatestumpDataNow() {
+    var newDataPoint = randomScalingFactor();
+    newDataPoint = Math.round(newDataPoint * 100) / 100;
+    OLDDATAPOINT.push(newDataPoint);
+    for (i = 0; i < OLDDATAPOINT.length; i++) {
+        OLDDATAPOINT[i] = OLDDATAPOINT[i + 1];
+    }
+    OLDDATAPOINT.pop();
+    return OLDDATAPOINT
+
+}
+
+function stumpDataNow() {
+    return OLDDATAPOINT
+}
+setInterval(function () {
+    updatestumpLabelNow();
+    updatestumpDataNow();
+}, 5000);

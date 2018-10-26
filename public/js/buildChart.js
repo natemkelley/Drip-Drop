@@ -4,7 +4,17 @@ $(document).ready(function () {
     loadBiggestDays();
     loadAvMonth();
     loadWeekDay();
+    loadPipe1Now();
+    loadPipe2Now();
+    loadTotalByPipe();
 });
+
+//runForever
+setInterval(function () {
+    updatePipe1Now();
+    updatePipe2Now();
+}, 5000);
+
 
 function buildChart(params) {
     var ctx = document.getElementById(params.ctx);
@@ -34,10 +44,6 @@ function loadBiggestDays() {
     });
 }
 
-function getLiveData() {
-
-}
-
 function loadAvMonth() {
     $.ajax({
         url: "/chart-avMonth",
@@ -60,22 +66,67 @@ function loadWeekDay() {
     });
 }
 
+function loadTotalByPipe() {
+    var myquery = "/chart-nowPipe2";
+    $.ajax({
+        url: myquery,
+        dataType: "json",
+        success: function (params) {
+            buildChart(params)
+        }
+    });
+}
 
-function fakeUpdate(myChart) {
-    /* myChart.options = {
-         scales: {
-             yAxes: [{
-                 display: true,
-                 scaleLabel: {
-                     display: true,
-                     labelString: 'Liters'
-                 }
-             }]
-         }
-     }
-     myChart.update({
-         duration: 800,
-         easing: 'easeOutBounce'
-     });*/
+function updateChart(params) {
+    console.log(myChart);
+    var ctx = document.getElementById(params.ctx);
+    var myChart = new Chart(ctx, params);
+    myChart.update({
+        duration: 300,
+        easing: 'easeInOutSine'
+    });
+}
 
+function loadPipe1Now() {
+    var myquery = "/chart-nowPipe1";
+    $.ajax({
+        url: myquery,
+        dataType: "json",
+        success: function (params) {
+            buildChart(params)
+        }
+    });
+}
+
+function loadPipe2Now() {
+    var myquery = "/chart-totalByPipe";
+    $.ajax({
+        url: myquery,
+        dataType: "json",
+        success: function (params) {
+            buildChart(params)
+        }
+    });
+}
+
+function updatePipe1Now() {
+    var myquery = "/chart-nowPipe1";
+    $.ajax({
+        url: myquery,
+        dataType: "json",
+        success: function (params) {
+            updateChart(params)
+        }
+    });
+}
+
+function updatePipe2Now() {
+    var myquery = "/chart-nowPipe2";
+    $.ajax({
+        url: myquery,
+        dataType: "json",
+        success: function (params) {
+            updateChart(params)
+        }
+    });
 }

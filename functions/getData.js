@@ -8,8 +8,8 @@ var PIPE2BIGDAY = {}; //done
 var PIPESBIGDAY = {}; //done
 var PIPE1AVMONTH = {}; //done
 var PIPE2AVMONTH = {}; //done
-var PIPE1WEEKDAY = {};
-var PIPE2WEEKDAY = {};
+var PIPE1WEEKDAY = {}; //done
+var PIPE2WEEKDAY = {}; //done
 
 exports.setWholeDataSet = function (data) {
     WHOLEDATASET = data

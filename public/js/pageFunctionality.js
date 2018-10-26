@@ -1,9 +1,9 @@
 //initialize page
 $(document).ready(function () {
-    pushpin();
     $('select').formSelect();
     refreshInputs();
     sizeStackedCharts();
+    $('.sidenav').sidenav();
 });
 
 $(window).resize(function () {
@@ -23,7 +23,7 @@ $(window).resize(function () {
     });
 
     $(".save-changes").click(function () {
-        $('.save-changes').addClass('disabled')
+        $('.save-changes').addClass('disabled');
     });
 
 
@@ -37,24 +37,27 @@ function refreshInputs() {
     });
 }
 
-function pushpin() {
-    $('.pushpin-demo-nav').each(function () {
-        var $this = $(this);
-        var $target = $('#' + $(this).attr('data-target'));
-
-        $this.pushpin({
-            top: $target.offset().top,
-            bottom: $target.offset().top + $target.outerHeight() - $this.height()
-        });
-    });
-}
-
 function sizeStackedCharts(time) {
-    if(time ==null ){
+    if (time == null) {
         time = 200;
     }
     setTimeout(function () {
         var siblingHeight = $('.s9 .chart-container').parent().height();
         $('.row .s3').height(siblingHeight);
     }, time);
+}
+
+function refreshGraphs() {
+    loadAv30();
+    loadBiggestDays();
+    loadAvMonth();
+    loadWeekDay();
+    updatePipe1Now();
+    updatePipe2Now();
+
+    M.toast({
+        html: 'Updated Graphs!',
+        classes: 'rounded'
+    })
+
 }

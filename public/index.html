@@ -15,16 +15,22 @@
 </head>
 
 <body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper blue lighten-1">
+                <a href="#!" class="brand-logo center">Welcome to DripDrop!</a>
+                <ul class="left ">
+                    <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">settings</i></a></li>
+                    <li><a onclick="refreshGraphs()"><i class="material-icons">refresh</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <div id="blue" class="block blue">
-        <div class="nav-wrapper">
-
-            <nav class="pushpin-demo-nav" data-target="blue">
-                <div class="nav-wrapper light-blue">
-                    <div class="container">
-                        <a href="#" class="brand-logo center">Welcome to DripDrop!</a>
-                    </div>
-                </div>
-            </nav>
+        <div class="title-wrapper valign-wrapper blue lighten-2">
+            <div class="container center">
+                <a href="#" class="title ">Recent Consumption</a>
+            </div>
         </div>
         <div class="row">
             <div class="col s9">
@@ -34,27 +40,22 @@
             </div>
             <div class="col s3 ">
                 <div class="col s12 stacked-chart-2" style="margin-top: 0px;">
-
+                    <canvas id="nowPipe1" width="" height="250"></canvas>
                 </div>
                 <div class="col s12 stacked-chart-2">
+                    <canvas id="nowPipe2" width="" height="250"></canvas>
 
                 </div>
             </div>
         </div>
 
     </div>
-
     <div id="red" class="block red lighten-1">
-        <div class="nav-wrapper">
-            <nav class="pushpin-demo-nav" data-target="red">
-                <div class="nav-wrapper red">
-                    <div class="container">
-                        <a href="#" class="brand-logo center">Maximum Water Usage</a>
-                    </div>
-                </div>
-            </nav>
+        <div class="title-wrapper valign-wrapper red lighten-1">
+            <div class="container center">
+                <a href="#" class="title ">Max Usages</a>
+            </div>
         </div>
-
         <div class="row">
             <div class="col s3 ">
                 <div class="col s12 stacked-chart-1" style="margin-top: 0px;">
@@ -68,16 +69,11 @@
             </div>
         </div>
     </div>
-
     <div id="green" class="block green lighten-1">
-        <div class="nav-wrapper">
-            <nav class="pushpin-demo-nav" data-target="green">
-                <div class="nav-wrapper green">
-                    <div class="container">
-                        <a href="#" class="brand-logo center">Averages</a>
-                    </div>
-                </div>
-            </nav>
+        <div class="title-wrapper valign-wrapper green lighten-1">
+            <div class="container center">
+                <a href="#" class="title ">Average Usage</a>
+            </div>
         </div>
         <div class="row">
             <div class="col s9">
@@ -87,27 +83,70 @@
             </div>
             <div class="col s3">
                 <div class="col s12 stacked-chart-1" style="margin-top: 0px;">
+                    <div class="pushpin-card">
+                        <canvas id="totalByPipe" width="" height="400"></canvas>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div id="orange" class="block orange lighten-1">
-        <div class="nav-wrapper">
-            <nav class="pushpin-demo-nav" data-target="orange">
-                <div class="nav-wrapper orange">
-                    <div class="container">
-                        <a href="#" class="brand-logo center">About</a>
-                    </div>
-                </div>
-            </nav>
+        <div class="title-wrapper valign-wrapper orange lighten-1">
+            <div class="container center">
+                <a href="#" class="title ">About</a>
+            </div>
         </div>
         <div class="row">
-            <div class="col s10">
+            <div class="col s12 offset-s0">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://considerclass.com/img/IMG_2643.jpg">
+                        </div>
+                        <div class="card-content">
+                            <p>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="col s12">
+                        <div class="card green darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Card Title</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="card red lighten-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Card Title</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="card light-blue lighten-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Card Title</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
-
         </div>
     </div>
 
@@ -136,15 +175,45 @@
         </div>
     </footer>
 
-
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="scripts/charts/Chart.bundle.min.js"></script>
-    <script src="js/pageFunctionality.js"></script>
-    <script src="js/buildChart.js"></script>
-
-
+    <!--sidenav-->
+    <ul id="slide-out" class="sidenav">
+        <div class="settings">
+            <div class="background center">
+                <img src="https://vignette.wikia.nocookie.net/the-book-of-eryan/images/0/0a/Water-drop.png/revision/latest?cb=20150712221650">
+            </div>
+            <div class="section">
+                <h5>Alert Settings</h5>
+                <select multiple>
+                    <option value="timer" selected="selected">Timer</option>
+                    <option value="usage">Usage</option>
+                </select>
+            </div>
+            <div class="settings-section">
+                <div class="input-field input-timer-section">
+                    <i class="material-icons prefix">timer
+                    </i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Minutes</label>
+                </div>
+                <div class="input-field input-usage-section">
+                    <i class="material-icons prefix">data_usage
+                    </i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Gallons</label>
+                </div>
+            </div>
+            <button class="btn waves-effect light-blue lighten-1 waves-light save-changes disabled" type="submit" name="action">Save Changes
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </ul>
 </body>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="scripts/charts/Chart.bundle.min.js"></script>
+<script src="js/pageFunctionality.js"></script>
+<script src="js/buildChart.js"></script>
 
 </html>
