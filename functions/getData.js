@@ -77,3 +77,5 @@ exports.getPipe2AvMonth = function () {
     console.log('getData -> getPipe2AvMonth')
     return PIPE2AVMONTH
 }
+
+

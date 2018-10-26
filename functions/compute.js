@@ -5,12 +5,13 @@ exports.startCompute = function (data) {
     console.log('compute -> start compute');
 
     //setData
-    getData.setWholeDataSet(data);
+    //getData.setWholeDataSet(data);
 
     //compute function
-    pipesavtime30(data);
-    pipesbigday(data);
-    pipesavmonth(data);
+    //pipesavtime30(data);
+    //pipesbigday(data);
+    //pipesavmonth(data);
+    pipebyday(data);
 
     return 'updated data set'
 }
@@ -216,6 +217,160 @@ async function pipesavmonth(data) {
 
         newdate = year + "/" + month;
         return newdate
+    }
+}
+
+async function pipebyday(data) {
+    console.log('pipebyday')
+    var pipes = pipeNames(data);
+
+    var sundayLiterCount = 0;
+    var sundayDayCount = 0;
+    var mondayLiterCount = 0;
+    var mondayDayCount = 0;
+    var tuesdayLiterCount = 0;
+    var tuesdayDayCount = 0;
+    var wednesdayLiterCount = 0;
+    var wednesdayDayCount = 0;
+    var thursdayLiterCount = 0;
+    var thursdayDayCount = 0;
+    var fridayLiterCount = 0;
+    var fridayDayCount = 0;
+    var saturdayLiterCount = 0;
+    var saturdayDayCount = 0;
+    var counterFriend = 0;
+
+    var oldDayNum = null;
+
+    for (var i = 0; i < pipes.length; i++) {
+        var obj = data[pipes[i]];
+        var sortedObj = sortByDate(obj);
+
+        for (var key in sortedObj) {
+            var dayNum = createDate(sortedObj[key].timestamp);
+            var literage = sortedObj[key].liters;
+
+            if (dayNum == oldDayNum) {
+                incrementDay(dayNum, 0, literage);
+            } else {
+                incrementDay(dayNum, 1, literage);
+            }
+            oldDayNum = dayNum;
+        }
+
+
+        if (i == 1) {
+            getData.setPipe2AvTime30(returnJSON.pipe2);
+        } else {
+
+        }
+        resetDays();
+    }
+
+
+    function resetDays() {
+        console.log('reset')
+        sundayLiterCount = 0;
+        sundayDayCount = 0;
+        mondayLiterCount = 0;
+        mondayDayCount = 0;
+        tuesdayLiterCount = 0;
+        tuesdayDayCount = 0;
+        wednesdayLiterCount = 0;
+        wednesdayDayCount = 0;
+        thursdayLiterCount = 0;
+        thursdayDayCount = 0;
+        fridayLiterCount = 0;
+        fridayDayCount = 0;
+        saturdayLiterCount = 0;
+        saturdayDayCount = 0;
+        counterFriend = 0;
+    }
+
+    function createDate(dateObj) {
+        var dateObj = new Date(dateObj);
+        var day = dateObj.getDay();
+        return day
+    }
+
+    function incrementDay(dayNum, incDay, literage) {
+        switch (dayNum) {
+            case 0:
+                sundayDayCount += incDay;
+                sundayLiterCount += literage
+                break;
+            case 1:
+                mondayDayCount += incDay;
+                mondayLiterCount += literage
+                break;
+            case 2:
+                tuesdayDayCount += incDay;
+                tuesdayLiterCount += literage
+                break;
+            case 3:
+                wednesdayDayCount += incDay;
+                wednesdayLiterCount += literage
+                break;
+            case 4:
+                thursdayDayCount += incDay;
+                thursdayLiterCount += literage
+                break;
+            case 5:
+                fridayDayCount += incDay;
+                fridayLiterCount += literage
+                break;
+            case 6:
+                saturdayDayCount += incDay;
+                saturdayLiterCount += literage
+        }
+    }
+
+    function buildDaysJSON() {
+        var daysJSON = {
+            Satuday: {
+                saturdayDayCount: saturdayDayCount,
+                saturdayLiterCount: saturdayLiterCount,
+                dayNum: 6,
+                day: "Satuday"
+            },
+            Friday: {
+                fridayDayCount: fridayDayCount,
+                fridayLiterCount: fridayLiterCount,
+                dayNum: 5,
+                day: "Friday"
+            },
+            Thursday: {
+                thursdayDayCount: thursdayDayCount,
+                thursdayLiterCount: thursdayLiterCount,
+                dayNum: 4,
+                day: "Thursday"
+            },
+            Wednesday: {
+                wednesdayDayCount: wednesdayDayCount,
+                wednesdayLiterCount: wednesdayLiterCount,
+                dayNum: 3,
+                day: "Wednesday"
+            },
+            Tuesday: {
+                tuesdayDayCount: tuesdayDayCount,
+                tuesdayLiterCount: tuesdayLiterCount,
+                dayNum: 2,
+                day: "Tuesday"
+            },
+            Monday: {
+                mondayDayCount: mondayDayCount,
+                mondayLiterCount: mondayLiterCount,
+                dayNum: 1,
+                day: "Monday"
+            },
+            Sunday: {
+                sundayDayCount: sundayDayCount,
+                sundayLiterCount: sundayLiterCount,
+                dayNum: 0,
+                day: "Sunday"
+            }
+        }
+        return daysJSON
     }
 }
 
