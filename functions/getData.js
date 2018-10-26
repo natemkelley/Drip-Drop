@@ -8,6 +8,8 @@ var PIPE2BIGDAY = {};
 var PIPESBIGDAY = {};
 var PIPE1AVMONTH = {};
 var PIPE2AVMONTH = {};
+
+//todo
 var PIPE1WEEKDAY = {};
 var PIPE2WEEKDAY = {};
 
@@ -51,7 +53,6 @@ exports.getPipe2BigDay = function () {
     console.log('getData -> getPipe2BigDay')
     return PIPE2AVTIME30
 }
-
 exports.setPipesBigDay = function (data) {
     PIPESBIGDAY = data
     console.log('setData -> setPipesBigDay')
@@ -59,4 +60,20 @@ exports.setPipesBigDay = function (data) {
 exports.getPipesBigDay = function () {
     console.log('getData -> getPipesBigDay')
     return PIPESBIGDAY
+}
+exports.setPipe1AvMonth = function (data) {
+    PIPE1AVMONTH = data
+    console.log('setData -> setPipesAvMonth')
+}
+exports.getPipe1AvMonth = function () {
+    console.log('getData -> getPipe1AvMonth')
+    return PIPE1AVMONTH
+}
+exports.setPipe2AvMonth = function (data) {
+    PIPE2AVMONTH = data
+    console.log('setData -> setPipe2AvMonth')
+}
+exports.getPipe2AvMonth = function () {
+    console.log('getData -> getPipe2AvMonth')
+    return PIPE2AVMONTH
 }

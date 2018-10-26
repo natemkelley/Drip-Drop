@@ -25,10 +25,8 @@ rootRef.on("value", function (snapshot) {
     }
 })
 
-
 var tried = 0;
 var success = 0;
-
 function dummyData() {
     var jsondata = {};
     var year = 2018;
@@ -83,7 +81,7 @@ function dummyData() {
     }
 
     function randomLiterage() {
-        let maxLiterage = 2.65;
+        let maxLiterage = 9.6555;
         let precision = 1000;
         var returnVal = 0;
         returnVal = Math.floor(Math.random() * (maxLiterage * precision - 1 * precision) + 1 * precision) / (1 * precision);

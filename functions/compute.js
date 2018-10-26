@@ -10,6 +10,7 @@ exports.startCompute = function (data) {
     //compute function
     pipesavtime30(data);
     pipesbigday(data);
+    pipesavmonth(data);
 
     return 'updated data set'
 }
@@ -42,9 +43,6 @@ async function pipesavtime30(data) {
                         date: checkDate,
                         dayAverage: theDailyAverage
                     }
-
-                    //var stringDot = createStringDot(i, dayData)
-                    //setDat(stringDot, dayData);
                     stagingArray[dayCount] = dayData
                     dayCount++;
                     theDailyAverage = 0;
@@ -120,12 +118,14 @@ async function pipesbigday(data) {
         //console.log(returnArry)
         return returnArry
     }
+
     function sortArrayByLiterage(data) {
         var sortedData = data.sort(function (a, b) {
             return a.liters > b.liters;
         });
         return sortedData
     }
+
     function combinePipes(data) {
         returnArray = [];
         stagingArray = [];
@@ -153,11 +153,78 @@ async function pipesbigday(data) {
         return returnArray
     }
 }
+async function pipesavmonth(data) {
+    var pipes = pipeNames(data);
+    var returnJSON = {};
+    var stagingArray = [];
+
+    for (var i = 0; i < pipes.length; i++) {
+        var obj = data[pipes[i]];
+        var sortedObj = sortByDate(obj);
+        var checkDate = "";
+        var dataPointCount = 0;
+        var unique = false;
+        var theMonthlyAverage = 0;
+        var theMonthlyTotal = 0;
+        var monthCount = 0;
+        for (var key in sortedObj) {
+            var date = createDate(sortedObj[key].timestamp);
+            var objLiter = sortedObj[key].liters;
+
+            if (date != checkDate) {
+                if (unique) {
+                    var monthNum = checkDate.split('/')[1];
+                    var yearNum = 2018;
+                    var monthData = {
+                        date: checkDate,
+                        monthAverage: (theMonthlyAverage * daysInMonth(yearNum, monthNum))
+                    }
+
+                    stagingArray[monthCount] = monthData
+                    monthCount++;
+                    theMonthlyAverage = 0;
+                    theMonthlyTotal = 0;
+                    dataPointCount = 1;
+                    unique = false;
+                }
+            } else {
+                unique = true
+            }
+
+            dataPointCount++
+            theMonthlyTotal += objLiter;
+            theMonthlyAverage = ((theMonthlyTotal) / dataPointCount);
+            checkDate = date;
+        }
+
+        returnJSON['pipe' + i] = limitTo30Days(stagingArray);
+    }
+
+    getData.setPipe2AvMonth(returnJSON.pipe1);
+    getData.setPipe2AvMonth(returnJSON.pipe2);
+
+    function limitTo30Days(data) {
+        var returnArry = data.slice(Math.max(data.length - 30, 1));
+        return returnArry
+    }
+
+    function createDate(dateObj) {
+        var dateObj = new Date(dateObj);
+
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var year = dateObj.getUTCFullYear();
+
+        newdate = year + "/" + month;
+        return newdate
+    }
+}
+
 
 function pipeNames(data) {
     var pipesName = Object.keys(data);
     return pipesName
 }
+
 function sortByDate(obj) {
     const ordered = {};
     Object.keys(obj)
@@ -167,4 +234,8 @@ function sortByDate(obj) {
         });
 
     return ordered
+}
+
+function daysInMonth(month, year) {
+    return new Date(year, month, 0).getDate();
 }
