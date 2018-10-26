@@ -53,10 +53,10 @@ exports.getPipe2BigDay = function () {
 }
 
 exports.setPipesBigDay = function (data) {
-    PIPESAVTIME30 = data
+    PIPESBIGDAY = data
     console.log('setData -> setPipesBigDay')
 }
 exports.getPipesBigDay = function () {
     console.log('getData -> getPipesBigDay')
-    return PIPESAVTIME30
+    return PIPESBIGDAY
 }
