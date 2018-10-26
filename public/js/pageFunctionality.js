@@ -1,8 +1,13 @@
 //initialize page
 $(document).ready(function () {
+    pushpin();
     $('select').formSelect();
     refreshInputs();
-    pushpin();
+    sizeStackedCharts();
+});
+
+$(window).resize(function () {
+    sizeStackedCharts()
 });
 
 (function () {
@@ -36,10 +41,17 @@ function refreshInputs() {
 function pushpin() {
     $('.pushpin-demo-nav').each(function () {
         var $this = $(this);
+        console.log($this)
         var $target = $('#' + $(this).attr('data-target'));
+
         $this.pushpin({
             top: $target.offset().top,
             bottom: $target.offset().top + $target.outerHeight() - $this.height()
         });
     });
+}
+
+function sizeStackedCharts() {
+    var siblingHeight = $('.s9 .chart-container').parent().height();
+    $('.row .s3').height(siblingHeight);
 }

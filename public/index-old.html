@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container center"><a id="logo-container" href="#" class="nav-logo">DripDrop Water Management</a>
+
+        </div>
+    </nav>
+
+    <div class="section no-pad-bot">
+        <div class="row">
+            <div class="col s3 settings">
+                <div class="section">
+                    <h5>Alert Settings</h5>
+                    <select multiple>
+                        <option value="timer" selected="selected">Timer</option>
+                        <option value="usage">Usage</option>
+                    </select>
+                </div>
+                <div class="settings-section">
+                    <div class="input-field input-timer-section">
+                        <i class="material-icons prefix">timer
+                        </i>
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">Minutes</label>
+                    </div>
+                    <div class="input-field input-usage-section">
+                        <i class="material-icons prefix">data_usage
+                        </i>
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">Gallons</label>
+                    </div>
+                </div>
+
+
+                <button class="btn waves-effect light-blue lighten-1 waves-light save-changes disabled" type="submit" name="action">Save Changes
+                    <i class="material-icons right">send</i>
+                </button>
+
+
+                <div class="flow-meter-section ">
+                    <div class="flow-meter pink lighten-2"></div>
+                </div>
+            </div>
+
+            <div class="col s8 charts">
+                <div class="row"> <canvas id="myChart" width="800" height="400"></canvas></div>
+
+                <div class="section">
+                    <div class="col s6"></div>
+                    <div class="col s6"></div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="scripts/charts/Chart.bundle.min.js"></script>
+<script src="js/buildChart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/pageFunctionality.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
+
+</html>

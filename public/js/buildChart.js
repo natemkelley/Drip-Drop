@@ -18,7 +18,6 @@ $.ajax({
     }
 });
 
-
 function buildChart(params) {
     var ctx = document.getElementById(params.ctx);
     console.log(params.ctx)
@@ -31,7 +30,7 @@ function buildChart(params) {
 }
 
 function fakeUpdate(myChart) {
-    myChart.options = {
+   /* myChart.options = {
         scales: {
             yAxes: [{
                 display: true,
@@ -45,6 +44,6 @@ function fakeUpdate(myChart) {
     myChart.update({
         duration: 800,
         easing: 'easeOutBounce'
-    });
+    });*/
 
 }

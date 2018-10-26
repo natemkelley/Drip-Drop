@@ -77,7 +77,7 @@ exports.test = function () {
 }
 
 exports.avtime30 = function () {
-    var ctx = "myChart";
+    var ctx = "av30";
     var chartParams = {
         type: 'line',
         data: {
@@ -115,7 +115,7 @@ exports.avtime30 = function () {
                 xAxes: [{
                     display: true,
                     scaleLabel: {
-                        display: true,
+                        display: false,
                         labelString: 'Day'
                     }
 					}],

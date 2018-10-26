@@ -1,79 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>title</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>DripDrop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container center"><a id="logo-container" href="#" class="nav-logo">DripDrop Water Management</a>
+    <div id="blue" class="block blue">
+        <div class="nav-wrapper">
 
+            <nav class="pushpin-demo-nav" data-target="blue">
+                <div class="nav-wrapper light-blue">
+                    <div class="container">
+                        <a href="#" class="brand-logo center">Welcome to DripDrop!</a>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </nav>
-
-    <div class="section no-pad-bot">
         <div class="row">
-            <div class="col s3 settings">
-                <div class="section">
-                    <h5>Alert Settings</h5>
-                    <select multiple>
-                        <option value="timer" selected="selected">Timer</option>
-                        <option value="usage">Usage</option>
-                    </select>
-                </div>
-                <div class="settings-section">
-                    <div class="input-field input-timer-section">
-                        <i class="material-icons prefix">timer
-                        </i>
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Minutes</label>
-                    </div>
-                    <div class="input-field input-usage-section">
-                        <i class="material-icons prefix">data_usage
-                        </i>
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Gallons</label>
-                    </div>
-                </div>
-
-
-                <button class="btn waves-effect light-blue lighten-1 waves-light save-changes disabled" type="submit" name="action">Save Changes
-                    <i class="material-icons right">send</i>
-                </button>
-
-
-                <div class="flow-meter-section ">
-                    <div class="flow-meter pink lighten-2"></div>
+            <div class="col s9">
+                <div class="chart-container pushpin-card">
+                    <canvas id="av30" width="800" height="400"></canvas>
                 </div>
             </div>
+            <div class="col s3 ">
+                <div class="col s12 stacked-chart-2" style="margin-top: 0px;">
 
-            <div class="col s8 charts">
-                <div class="row"> <canvas id="myChart" width="800" height="400"></canvas></div>
-
-                <div class="section">
-                    <div class="col s6"></div>
-                    <div class="col s6"></div>
                 </div>
+                <div class="col s12 stacked-chart-2">
 
+                </div>
+            </div>
+        </div>
 
+    </div>
+
+    <div id="red" class="block red lighten-1">
+        <div class="nav-wrapper">
+            <nav class="pushpin-demo-nav" data-target="red">
+                <div class="nav-wrapper red">
+                    <div class="container">
+                        <a href="#" class="brand-logo center">Maximum Water Usage</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col s3 ">
+                <div class="col s12 stacked-chart-1" style="margin-top: 0px;">
+
+                </div>
+            </div>
+            <div class="col s9">
+                <div class="chart-container pushpin-card">
+                    <canvas id="av30" width="800" height="400"></canvas>
+                </div>
             </div>
         </div>
     </div>
+
+    <div id="green" class="block green lighten-1">
+        <div class="nav-wrapper">
+            <nav class="pushpin-demo-nav" data-target="green">
+                <div class="nav-wrapper green">
+                    <div class="container">
+                        <a href="#" class="brand-logo center">Averages</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col s9">
+                <div class="chart-container pushpin-card">
+                    <canvas id="av30" width="800" height="400"></canvas>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="col s12 stacked-chart-1" style="margin-top: 0px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="orange" class="block orange lighten-1">
+        <div class="nav-wrapper">
+            <nav class="pushpin-demo-nav" data-target="orange">
+                <div class="nav-wrapper orange">
+                    <div class="container">
+                        <a href="#" class="brand-logo center">Averages</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col s3">
+                <div class="col s12 stacked-chart-1" style="margin-top: 0px;">
+
+                </div>
+            </div>
+            <div class="col s9">
+                <div class="chart-container pushpin-card">
+                    <canvas id="av30" width="800" height="400"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="page-footer cyan">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                2018 Raspberry Pi Competition
+            </div>
+        </div>
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/charts/Chart.bundle.min.js"></script>
+    <script src="js/pageFunctionality.js"></script>
+    <script src="js/buildChart.js"></script>
+
+
 </body>
-
-<script src="scripts/charts/Chart.bundle.min.js"></script>
-<script src="js/buildChart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="js/pageFunctionality.js"></script>
-<link rel="stylesheet" href="css/style.css">
-
 
 </html>
