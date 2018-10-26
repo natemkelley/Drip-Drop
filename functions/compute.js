@@ -5,12 +5,12 @@ exports.startCompute = function (data) {
     console.log('compute -> start compute');
 
     //setData
-    //getData.setWholeDataSet(data);
+    getData.setWholeDataSet(data);
 
     //compute function
-    //pipesavtime30(data);
-    //pipesbigday(data);
-    //pipesavmonth(data);
+    pipesavtime30(data);
+    pipesbigday(data);
+    pipesavmonth(data);
     pipebyday(data);
 
     return 'updated data set'
@@ -116,7 +116,6 @@ async function pipesbigday(data) {
 
     function limitTo30Days(data) {
         var returnArry = data.slice(Math.max(data.length - 30, 1))
-        //console.log(returnArry)
         return returnArry
     }
 
@@ -147,7 +146,6 @@ async function pipesbigday(data) {
         }
 
         for (var key in stagingArray) {
-            //console.log(stagingArray[key]);
             returnArray.push(stagingArray[key]);
         }
 
@@ -219,9 +217,7 @@ async function pipesavmonth(data) {
         return newdate
     }
 }
-
 async function pipebyday(data) {
-    console.log('pipebyday')
     var pipes = pipeNames(data);
 
     var sundayLiterCount = 0;
@@ -260,16 +256,15 @@ async function pipebyday(data) {
 
 
         if (i == 1) {
-            getData.setPipe2AvTime30(returnJSON.pipe2);
+            getData.setPipe2Weekday(buildDaysJSON());
         } else {
-
+            getData.setPipe1Weekday(buildDaysJSON());
         }
         resetDays();
     }
 
 
     function resetDays() {
-        console.log('reset')
         sundayLiterCount = 0;
         sundayDayCount = 0;
         mondayLiterCount = 0;
@@ -331,49 +326,55 @@ async function pipebyday(data) {
                 saturdayDayCount: saturdayDayCount,
                 saturdayLiterCount: saturdayLiterCount,
                 dayNum: 6,
-                day: "Satuday"
+                day: "Satuday",
+                averageUse: (saturdayLiterCount / saturdayDayCount)
             },
             Friday: {
                 fridayDayCount: fridayDayCount,
                 fridayLiterCount: fridayLiterCount,
                 dayNum: 5,
-                day: "Friday"
+                day: "Friday",
+                averageUse: (fridayLiterCount / fridayDayCount)
             },
             Thursday: {
                 thursdayDayCount: thursdayDayCount,
                 thursdayLiterCount: thursdayLiterCount,
                 dayNum: 4,
-                day: "Thursday"
+                day: "Thursday",
+                averageUse: (thursdayLiterCount / thursdayDayCount)
             },
             Wednesday: {
                 wednesdayDayCount: wednesdayDayCount,
                 wednesdayLiterCount: wednesdayLiterCount,
                 dayNum: 3,
-                day: "Wednesday"
+                day: "Wednesday",
+                averageUse: (wednesdayLiterCount / wednesdayDayCount)
             },
             Tuesday: {
                 tuesdayDayCount: tuesdayDayCount,
                 tuesdayLiterCount: tuesdayLiterCount,
                 dayNum: 2,
-                day: "Tuesday"
+                day: "Tuesday",
+                averageUse: (tuesdayLiterCount / tuesdayDayCount)
             },
             Monday: {
                 mondayDayCount: mondayDayCount,
                 mondayLiterCount: mondayLiterCount,
                 dayNum: 1,
-                day: "Monday"
+                day: "Monday",
+                averageUse: (mondayLiterCount / mondayDayCount)
             },
             Sunday: {
                 sundayDayCount: sundayDayCount,
                 sundayLiterCount: sundayLiterCount,
                 dayNum: 0,
-                day: "Sunday"
+                day: "Sunday",
+                averageUse: (sundayLiterCount / sundayDayCount)
             }
         }
         return daysJSON
     }
 }
-
 
 function pipeNames(data) {
     var pipesName = Object.keys(data);

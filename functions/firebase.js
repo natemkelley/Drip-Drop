@@ -21,12 +21,16 @@ rootRef.on("value", function (snapshot) {
     if (snapshot.val() == null) {
         massInputDummyData();
     } else {
-        var status = compute.startCompute(snapshot.val());
+        //var status = compute.startCompute(snapshot.val());
     }
 })
 
+massInputDummyData();
+
+
 var tried = 0;
 var success = 0;
+
 function dummyData() {
     var jsondata = {};
     var year = 2018;
@@ -81,7 +85,7 @@ function dummyData() {
     }
 
     function randomLiterage() {
-        let maxLiterage = 9.6555;
+        let maxLiterage = 17.6555;
         let precision = 1000;
         var returnVal = 0;
         returnVal = Math.floor(Math.random() * (maxLiterage * precision - 1 * precision) + 1 * precision) / (1 * precision);
