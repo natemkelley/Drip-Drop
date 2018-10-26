@@ -38,7 +38,7 @@ exports.getPipe2AvTime30 = function () {
     return PIPE2AVTIME30
 }
 exports.setPipe1BigDay = function (data) {
-    PIPE1AVTIME30 = data
+    PIPE1BIGDAY = data
     console.log('setData -> setPipe1BigDay')
 }
 exports.getPipe1BigDay = function () {
@@ -46,12 +46,12 @@ exports.getPipe1BigDay = function () {
     return PIPE1AVTIME30
 }
 exports.setPipe2BigDay = function (data) {
-    PIPE2AVTIME30 = data
+    PIPE2BIGDAY = data
     console.log('setData -> setPipe2BigDay')
 }
 exports.getPipe2BigDay = function () {
     console.log('getData -> getPipe2BigDay')
-    return PIPE2AVTIME30
+    return PIPE2BIGDAY
 }
 exports.setPipesBigDay = function (data) {
     PIPESBIGDAY = data

@@ -64,15 +64,14 @@ async function pipesavtime30(data) {
         returnJSON['pipe' + i] = limitTo30Days(stagingArray);
     }
 
-    getData.setPipe1AvTime30(returnJSON.pipe1);
-    getData.setPipe2AvTime30(returnJSON.pipe2);
+    getData.setPipe1AvTime30(returnJSON.pipe0);
+    getData.setPipe2AvTime30(returnJSON.pipe1);
 
 
     function limitTo30Days(data) {
-        var returnArry = data.slice(Math.max(data.length - 30, 1))
+        var returnArry = data.slice(Math.max(data.length - 30, 1));
         return returnArry
     }
-
     function createDate(dateObj) {
         var dateObj = new Date(dateObj);
 
