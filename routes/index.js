@@ -11,8 +11,13 @@ router.get('/wholeDataSet', function (req, res, next) {
     res.send(result);
 });
 
-router.get('/getPipe1AvTime30', function (req, res, next) {
+router.get('/getAvTime30', function (req, res, next) {
     var result = getData.getPipe1AvTime30();
+    res.send(result);
+});
+
+router.get('/getBigDay', function (req, res, next) {
+    var result = getData.getPipe1BigDay();
     res.send(result);
 });
 

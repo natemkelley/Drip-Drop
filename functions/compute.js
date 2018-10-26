@@ -8,7 +8,8 @@ exports.startCompute = function (data) {
     getData.setWholeDataSet(data);
 
     //compute function
-    pipesavtime30(data)
+    pipesavtime30(data);
+    pipesbigday(data);
 
     return 'updated data set'
 }
@@ -61,14 +62,95 @@ async function pipesavtime30(data) {
             checkDate = date;
         }
 
-        returnJSON['pipe' + i] = limitTo30Days(stagingArray)
+        returnJSON['pipe' + i] = limitTo30Days(stagingArray);
     }
 
-    getData.setPipe1AvTime30(returnJSON);
+    getData.setPipe1AvTime30(returnJSON.pipe1);
+    getData.setPipe2AvTime30(returnJSON.pipe2);
+
 
     function limitTo30Days(data) {
         var returnArry = data.slice(Math.max(data.length - 30, 1))
         return returnArry
+    }
+
+    function createDate(dateObj) {
+        var dateObj = new Date(dateObj);
+
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+
+        newdate = year + "/" + month + "/" + day;
+        return newdate
+    }
+}
+async function pipesbigday(data) {
+    var pipes = pipeNames(data);
+    var totalUnsortedArray = []
+
+    for (var i = 0; i < pipes.length; i++) {
+        var obj = data[pipes[i]];
+        var unsortedArray = [];
+        var sortedArray = [];
+
+        for (var key in obj) {
+            unsortedArray.push(obj[key])
+            totalUnsortedArray.push(obj[key])
+        }
+
+        sortedArray = sortArrayByLiterage(unsortedArray);
+        var limitedArray = limitTo30Days(sortedArray);
+
+        if (i == 0) {
+            getData.setPipe1BigDay(limitedArray);
+        } else {
+            getData.setPipe2BigDay(limitedArray);
+        }
+    }
+
+    //both pipes combined
+    var combinedPipesArray = combinePipes(totalUnsortedArray);
+    var totalSortedArray = sortArrayByLiterage(combinedPipesArray);
+    var totalLimitedArray = limitTo30Days(totalSortedArray);
+    getData.setPipesBigDay(totalLimitedArray);
+
+    function limitTo30Days(data) {
+        var returnArry = data.slice(Math.max(data.length - 30, 1))
+        //console.log(returnArry)
+        return returnArry
+    }
+    function sortArrayByLiterage(data) {
+        var sortedData = data.sort(function (a, b) {
+            return a.liters > b.liters;
+        });
+        return sortedData
+    }
+    function combinePipes(data) {
+        returnArray = [];
+        stagingArray = [];
+        for (i = 0; i < data.length; i++) {
+            var date = data[i].timestamp;
+
+            var newdata = {
+                timestamp: data[i].timestamp,
+                liters: 0
+            }
+            if (stagingArray[date] == null) {
+                stagingArray[date] = newdata;
+                stagingArray[date].liters += data[i].liters;
+            } else {
+                var oldliters = stagingArray[date].liters
+                stagingArray[date].liters = oldliters + data[i].liters;
+            }
+        }
+
+        for (var key in stagingArray) {
+            //console.log(stagingArray[key]);
+            returnArray.push(stagingArray[key]);
+        }
+
+        return returnArray
     }
 }
 
@@ -76,18 +158,6 @@ function pipeNames(data) {
     var pipesName = Object.keys(data);
     return pipesName
 }
-
-function createDate(dateObj) {
-    var dateObj = new Date(dateObj);
-
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
-
-    newdate = year + "/" + month + "/" + day;
-    return newdate
-}
-
 function sortByDate(obj) {
     const ordered = {};
     Object.keys(obj)
