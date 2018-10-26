@@ -114,7 +114,7 @@ async function pipesbigday(data) {
     getData.setPipesBigDay(totalLimitedArray);
 
     function limitTo30Days(data) {
-        var returnArry = data.slice(Math.max(data.length - 30, 1))
+        var returnArry = data.slice(Math.max(data.length - 15, 1))
         return returnArry
     }
 
@@ -198,11 +198,11 @@ async function pipesavmonth(data) {
         returnJSON['pipe' + i] = limitTo30Days(stagingArray);
     }
 
+    getData.setPipe1AvMonth(returnJSON.pipe0);
     getData.setPipe2AvMonth(returnJSON.pipe1);
-    getData.setPipe2AvMonth(returnJSON.pipe2);
 
     function limitTo30Days(data) {
-        var returnArry = data.slice(Math.max(data.length - 30, 1));
+        var returnArry = data.slice(Math.max(data.length - 15, 1));
         return returnArry
     }
 

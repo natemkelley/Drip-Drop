@@ -1,15 +1,13 @@
 var compute = require('./compute.js');
 
 var WHOLEDATASET = {};
-var PIPE1AVTIME30 = {};
-var PIPE2AVTIME30 = {};
-var PIPE1BIGDAY = {};
-var PIPE2BIGDAY = {};
-var PIPESBIGDAY = {};
+var PIPE1AVTIME30 = {}; //done
+var PIPE2AVTIME30 = {}; //done
+var PIPE1BIGDAY = {}; //done
+var PIPE2BIGDAY = {}; //done
+var PIPESBIGDAY = {}; 
 var PIPE1AVMONTH = {};
 var PIPE2AVMONTH = {};
-
-//todo
 var PIPE1WEEKDAY = {};
 var PIPE2WEEKDAY = {};
 
@@ -43,7 +41,7 @@ exports.setPipe1BigDay = function (data) {
 }
 exports.getPipe1BigDay = function () {
     console.log('getData -> getPipe2BigDay')
-    return PIPE1AVTIME30
+    return PIPE1BIGDAY
 }
 exports.setPipe2BigDay = function (data) {
     PIPE2BIGDAY = data
@@ -71,6 +69,7 @@ exports.getPipe1AvMonth = function () {
 }
 exports.setPipe2AvMonth = function (data) {
     PIPE2AVMONTH = data
+    console.log(PIPE2AVMONTH)
     console.log('setData -> setPipe2AvMonth')
 }
 exports.getPipe2AvMonth = function () {

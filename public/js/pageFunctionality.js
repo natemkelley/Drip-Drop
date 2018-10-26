@@ -30,7 +30,6 @@ $(window).resize(function () {
 }());
 
 function refreshInputs() {
-    console.log('wokring')
     $('.input-field').hide()
     $("select option:selected").each(function () {
         var val = ($(this).val());
@@ -41,7 +40,6 @@ function refreshInputs() {
 function pushpin() {
     $('.pushpin-demo-nav').each(function () {
         var $this = $(this);
-        console.log($this)
         var $target = $('#' + $(this).attr('data-target'));
 
         $this.pushpin({

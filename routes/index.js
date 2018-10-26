@@ -21,6 +21,16 @@ router.get('/chart-av30', function (req, res, next) {
     res.send(result);
 });
 
+router.get('/chart-bigDay', function (req, res, next) {
+    var result = chartData.bigDay();
+    res.send(result);
+});
+
+router.get('/chart-avMonth', function (req, res, next) {
+    var result = chartData.avMonth();
+    res.send(result);
+});
+
 
 
 module.exports = router;
