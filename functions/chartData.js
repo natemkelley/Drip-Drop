@@ -226,7 +226,6 @@ exports.avMonth = function () {
 
     var data1 = getData.getPipe1AvMonth();
     var data2 = getData.getPipe2AvMonth();
-    console.log(data2)
     var label = makeMonthLabel(data1);
     var dataset1 = makeLiterageMonthAv(data1);
     var dataset2 = makeLiterageMonthAv(data2);
@@ -268,7 +267,70 @@ exports.avMonth = function () {
     chartParams.ctx = ctx
     return chartParams
 }
+exports.weekDay = function () {
+    var ctx = "weekDay";
+    var barChartData = {
+        labels: [],
+        datasets: [{
+            label: 'Pipe 1',
+            backgroundColor: chartColors.red,
+            borderColor: chartColors.red,
+            borderWidth: 1,
+            data: []
+			}, {
+            label: 'Pipe 2',
+            backgroundColor: chartColors.blue,
+            borderColor: chartColors.blue,
+            borderWidth: 1,
+            data: []
+			}]
+    };
 
+    var data1 = getData.getPipe1Weekday();
+    var data2 = getData.getPipe2Weekday();
+    console.log(data1)
+    var label = makeWeekdayLabel(data1);
+    var dataset1 = makeLitersWeekday(data1);
+    var dataset2 = makeLitersWeekday(data2);
+
+    var chartParams = {
+        type: 'horizontalBar',
+        data: barChartData,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Average Day Usage'
+            }
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Liters'
+                }
+					}],
+            yAxes: [{
+                display: false,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Liters'
+                }
+					}]
+        }
+    }
+
+     chartParams.data.datasets[0].data = dataset1
+    chartParams.data.datasets[1].data = dataset2
+    chartParams.data.labels = label
+    chartParams.ctx = ctx
+    return chartParams
+}
 
 function randomScalingFactor() {
     var max = 10;
@@ -363,6 +425,26 @@ function makeLiterageMonthAv(data) {
         var literage = data[key].monthAverage;
         literage = Math.round(literage * 100) / 100;
         dataPoints.push(literage)
+    }
+    return dataPoints
+}
+
+function makeWeekdayLabel(data) {
+    var dataPoints = [];
+
+    for (key in data) {
+        console.log(key)
+        dataPoints.push(key)
+    }
+    return dataPoints
+}
+
+function makeLitersWeekday(data) {
+    var dataPoints = [];
+
+    for (key in data) {
+        var av = data[key].averageUse;
+        dataPoints.push(av)
     }
     return dataPoints
 }

@@ -3,6 +3,7 @@ $(document).ready(function () {
     loadAv30();
     loadBiggestDays();
     loadAvMonth();
+    loadWeekDay();
 });
 
 function buildChart(params) {
@@ -42,14 +43,21 @@ function loadAvMonth() {
         url: "/chart-avMonth",
         dataType: "json",
         success: function (params) {
-            console.log(params);
+            //console.log(params);
             buildChart(params)
         }
     });
 }
 
-function daysMostUsed() {
-
+function loadWeekDay() {
+    $.ajax({
+        url: "/chart-weekDay",
+        dataType: "json",
+        success: function (params) {
+            console.log(params);
+            buildChart(params)
+        }
+    });
 }
 
 

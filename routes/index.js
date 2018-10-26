@@ -31,6 +31,11 @@ router.get('/chart-avMonth', function (req, res, next) {
     res.send(result);
 });
 
+router.get('/chart-weekDay', function (req, res, next) {
+    var result = chartData.weekDay();
+    res.send(result);
+});
+
 
 
 module.exports = router;

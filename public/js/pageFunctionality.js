@@ -49,7 +49,12 @@ function pushpin() {
     });
 }
 
-function sizeStackedCharts() {
-    var siblingHeight = $('.s9 .chart-container').parent().height();
-    $('.row .s3').height(siblingHeight);
+function sizeStackedCharts(time) {
+    if(time ==null ){
+        time = 200;
+    }
+    setTimeout(function () {
+        var siblingHeight = $('.s9 .chart-container').parent().height();
+        $('.row .s3').height(siblingHeight);
+    }, time);
 }
