@@ -106,3 +106,51 @@ exports.getSettings = function () {
     return returnJSON
 }
 
+
+//currentData
+var CURRENTPIPE1 = [1, 2, 3, 1, 8];
+var CURRENTPIPE2 = [2, 0, 5, 1, 1];
+exports.setCurrentPipe1 = function (data) {
+    // var newDataPoint = randomScalingFactor();
+    var newDataPoint = data;
+    newDataPoint = Math.round(newDataPoint * 100) / 100;
+    CURRENTPIPE1.push(newDataPoint);
+    for (i = 0; i < CURRENTPIPE1.length; i++) {
+        CURRENTPIPE1[i] = CURRENTPIPE1[i + 1];
+    }
+    CURRENTPIPE1.pop();
+    console.log('setCurrentPipe1')
+}
+exports.getCurrentPipe1 = function () {
+    console.log('getData -> getCurrentPipe1')
+    return CURRENTPIPE1
+}
+exports.setCurrentPipe2 = function () {
+    var max = 10;
+    var min = 1;
+    var rando = Math.random() * (max - min) + min;
+    var newDataPoint = rando;
+    newDataPoint = Math.round(newDataPoint * 100) / 100;
+    CURRENTPIPE2.push(newDataPoint);
+    for (i = 0; i < CURRENTPIPE2.length; i++) {
+        CURRENTPIPE2[i] = CURRENTPIPE2[i + 1];
+    }
+    CURRENTPIPE2.pop();
+    console.log(CURRENTPIPE2)
+    console.log('getData -> setCurrentPipe1')
+}
+exports.getCurrentPipe2 = function () {
+    var max = 10;
+    var min = 1;
+    var rando = Math.random() * (max - min) + min;
+    var newDataPoint = rando;
+    newDataPoint = Math.round(newDataPoint * 100) / 100;
+    CURRENTPIPE2.push(newDataPoint);
+    for (i = 0; i < CURRENTPIPE2.length; i++) {
+        CURRENTPIPE2[i] = CURRENTPIPE2[i + 1];
+    }
+    CURRENTPIPE2.pop();
+
+    console.log('getData -> getCurrentPipe2')
+    return CURRENTPIPE2
+}

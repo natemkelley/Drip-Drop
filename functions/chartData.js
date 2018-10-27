@@ -331,7 +331,7 @@ exports.nowPipe1 = function () {
         }
     }
 
-    chartParams.data.datasets[0].data = stumpDataNow();
+    chartParams.data.datasets[0].data = getData.getCurrentPipe1();
     chartParams.data.labels = stumpLabelNow();
     chartParams.ctx = ctx
     return chartParams
@@ -361,7 +361,7 @@ exports.nowPipe2 = function () {
             },
             title: {
                 display: true,
-                text: 'Current Usage - Pipe 2 (HH:MM:SS)'
+                text: 'Current Usage - Pipe 2 (RANDOM)'
             },
             tooltips: {
                 enabled: false
@@ -381,7 +381,7 @@ exports.nowPipe2 = function () {
         }
     }
 
-    chartParams.data.datasets[0].data = stumpDataNow();
+    chartParams.data.datasets[0].data = getData.getCurrentPipe2();
     chartParams.data.labels = stumpLabelNow();
     chartParams.ctx = ctx
     return chartParams
@@ -390,7 +390,7 @@ exports.nowPipe2 = function () {
 function randomScalingFactor() {
     var max = 10;
     var min = 1;
-    return Math.random() * (max - min) + min;;
+    return Math.random() * (max - min) + min;
 }
 var chartColors = {
     red: 'rgb(255, 99, 132)',
@@ -410,7 +410,6 @@ var chartColorsOpacity = {
     purple: 'rgb(153, 102, 255)',
     grey: 'rgb(201, 203, 207)'
 }
-
 function make30daylabel(data) {
     var label = [];
 
@@ -560,24 +559,7 @@ function updatestumpLabelNow() {
 function stumpLabelNow() {
     return CURRENTTIME;
 }
-var OLDDATAPOINT = [1, 1, 1, 1, 1];
 
-function updatestumpDataNow() {
-    var newDataPoint = randomScalingFactor();
-    newDataPoint = Math.round(newDataPoint * 100) / 100;
-    OLDDATAPOINT.push(newDataPoint);
-    for (i = 0; i < OLDDATAPOINT.length; i++) {
-        OLDDATAPOINT[i] = OLDDATAPOINT[i + 1];
-    }
-    OLDDATAPOINT.pop();
-    return OLDDATAPOINT
-
-}
-
-function stumpDataNow() {
-    return OLDDATAPOINT
-}
 setInterval(function () {
     updatestumpLabelNow();
-    updatestumpDataNow();
 }, 5000);
