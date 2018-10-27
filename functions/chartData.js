@@ -167,23 +167,16 @@ exports.avMonth = function () {
             title: {
                 display: true,
                 text: 'Chart.js Bar Chart'
-            }
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: false,
-                    labelString: 'Day'
-                }
-					}],
-            yAxes: [{
-                display: true,
-                scaleLabel: {
+            },
+            scales: {
+                yAxes: [{
                     display: true,
-                    labelString: 'Liters'
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Liters'
+                    }
 					}]
+            }
         }
     }
 
@@ -230,23 +223,16 @@ exports.weekDay = function () {
             title: {
                 display: true,
                 text: 'Day of Week Usage'
-            }
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
+            },
+            scales: {
+                xAxes: [{
                     display: true,
-                    labelString: 'Liters'
-                }
-					}],
-            yAxes: [{
-                display: false,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Liters'
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Liters'
+                    }
 					}]
+            }
         }
     }
 
@@ -279,7 +265,7 @@ exports.totalByPipe = function () {
         options: {
             title: {
                 display: true,
-                text: 'Total Usage over Time'
+                text: 'Total Usage over Time (Liters)'
             },
             responsive: true,
             layout: {
@@ -325,7 +311,7 @@ exports.nowPipe1 = function () {
             },
             title: {
                 display: true,
-                text: 'Current Usage - Pipe 1'
+                text: 'Current Usage - Pipe 1 (HH:MM:SS)'
             },
             tooltips: {
                 mode: 'index',
@@ -337,22 +323,15 @@ exports.nowPipe1 = function () {
                 intersect: true,
                 display: false
             },
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
+            scales: {
+                yAxes: [{
                     display: true,
-                    labelString: 'Liters'
-                }
-					}],
-            yAxes: [{
-                display: false,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Liters'
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Liters'
+                    }
 					}]
+            }
         }
     }
 
@@ -386,7 +365,7 @@ exports.nowPipe2 = function () {
             },
             title: {
                 display: true,
-                text: 'Current Usage - Pipe 2'
+                text: 'Current Usage - Pipe 2 (HH:MM:SS)'
             },
             tooltips: {
                 mode: 'index',
@@ -398,22 +377,15 @@ exports.nowPipe2 = function () {
                 intersect: true,
                 display: false
             },
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
+            scales: {
+                yAxes: [{
                     display: true,
-                    labelString: 'Liters'
-                }
-					}],
-            yAxes: [{
-                display: false,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Liters'
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Liters'
+                    }
 					}]
+            }
         }
     }
 
