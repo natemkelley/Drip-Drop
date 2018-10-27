@@ -76,5 +76,5 @@ function getSettings() {
 exports.getSettings = function () {
     getSettings();
 }
-getSettings();
-readMeter();
+//getSettings();
+//readMeter();
