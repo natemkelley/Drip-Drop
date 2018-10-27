@@ -63,6 +63,7 @@ router.post('/changeAlert', function (req, res, next) {
     var receivedJSON = req.body;
 
     firebaseApp.saveSettings(receivedJSON);
+    controlSensors.getSettings();
 
     res.status(200).send({
         success: "IT WORKED!"
