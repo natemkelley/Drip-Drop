@@ -2,6 +2,8 @@
 var firebase = require('firebase');
 var compute = require('./compute.js');
 var fs = require('fs');
+var controlSensors = require('./controlSensors.js');
+var getData = require('./getData.js');
 
 //firebase config
 var config = {
@@ -21,12 +23,17 @@ rootRef.on("value", function (snapshot) {
     if (snapshot.val() == null) {
         massInputDummyData();
     } else {
-        var status = compute.startCompute(snapshot.val());
+        var pipes = makePipes(snapshot.val());
+        var settings = makeSettings(snapshot.val())
+
+        compute.startCompute(pipes);
+        getData.setSettings(settings);
     }
 })
 
 var tried = 0;
 var success = 0;
+
 function dummyData() {
     var jsondata = {};
     var year = 2018;
@@ -145,4 +152,31 @@ function massInputDummyData() {
             dummyData()
         }, 5000 * xxx);
     }
+}
+
+function makePipes(data) {
+    var returnJSON = {};
+    returnJSON.pipe1 = data.pipe1;
+    returnJSON.pipe0 = data.pipe0;
+    return returnJSON
+}
+
+function makeSettings(data) {
+    var returnJSON = {};
+    returnJSON.settings = data.settings;
+    return returnJSON
+}
+
+exports.saveSettings = function (data) {
+    console.log('firebase -> saveSettings');
+
+    firebase.database().ref('/settings').set(data, function (error) {
+        if (error) {
+            console.error(error);
+            return 500
+        } else {
+            console.log('200')
+            return 200
+        }
+    });
 }

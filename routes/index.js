@@ -1,9 +1,12 @@
 var express = require('express');
+var request = require('request')
+const https = require('https');
 var router = express.Router();
-var PythonShell = require('python-shell');
+var express = require('../functions/controlSensors.js');
 var firebaseApp = require('../functions/firebase.js');
 var chartData = require('../functions/chartData.js');
 var getData = require('../functions/getData.js');
+var controlSensors = require('../functions/controlSensors.js');
 
 
 router.get('/wholeDataSet', function (req, res, next) {
@@ -51,5 +54,19 @@ router.get('/chart-totalByPipe', function (req, res, next) {
     res.send(result);
 });
 
+router.get('/getSettings', function (req, res, next) {
+    var settings = getData.getSettings();
+    res.send(settings);
+});
+
+router.post('/changeAlert', function (req, res, next) {
+    var receivedJSON = req.body;
+
+    firebaseApp.saveSettings(receivedJSON);
+
+    res.status(200).send({
+        success: "IT WORKED!"
+    });
+});
 
 module.exports = router;

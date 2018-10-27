@@ -7,6 +7,13 @@ var bodyParser = require('body-parser');
 var app = express();
 var port = 3000;
 
+//config
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
 //routes
 var routes = require('./routes/index');
 var http = require('http').Server(app);
@@ -22,7 +29,10 @@ http.listen(port, function () {
     console.log('Server listening at port %d', port);
 });
 
-
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 
 module.exports = app;
 

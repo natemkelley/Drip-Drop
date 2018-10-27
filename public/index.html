@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="shortcut icon" href="https://www.considerclass.com/resume-assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -191,17 +192,17 @@
                 <div class="input-field input-timer-section">
                     <i class="material-icons prefix">timer
                     </i>
-                    <input id="icon_prefix" type="text" class="validate">
+                    <input type="text" class="validate" id="minutes">
                     <label for="icon_prefix">Minutes</label>
                 </div>
                 <div class="input-field input-usage-section">
                     <i class="material-icons prefix">data_usage
                     </i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Gallons</label>
+                    <input type="text" class="validate" id="liters">
+                    <label for="icon_prefix">Liters</label>
                 </div>
             </div>
-            <button class="btn waves-effect light-blue lighten-1 waves-light save-changes disabled" type="submit" name="action">Save Changes
+            <button class="btn waves-effect light-blue lighten-1 waves-light save-changes disabled" >Save Changes
                 <i class="material-icons right">send</i>
             </button>
         </div>
@@ -214,5 +215,6 @@
 <script src="scripts/charts/Chart.bundle.min.js"></script>
 <script src="js/pageFunctionality.js"></script>
 <script src="js/buildChart.js"></script>
+<script src="js/saveSensorSettings.js"></script>
 
 </html>

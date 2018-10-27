@@ -25,12 +25,6 @@ $(window).scroll(function () {
         INPUTCHANGE = true;
         $('.save-changes').removeClass('disabled');
     });
-
-    $(".save-changes").click(function () {
-        $('.save-changes').addClass('disabled');
-    });
-
-
 }());
 
 function refreshInputs() {

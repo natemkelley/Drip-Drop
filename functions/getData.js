@@ -10,6 +10,8 @@ var PIPE1AVMONTH = {}; //done
 var PIPE2AVMONTH = {}; //done
 var PIPE1WEEKDAY = {}; //done
 var PIPE2WEEKDAY = {}; //done
+var LITERS;
+var TIMER;
 
 exports.setWholeDataSet = function (data) {
     WHOLEDATASET = data
@@ -92,5 +94,18 @@ exports.setPipe2Weekday = function (data) {
 exports.getPipe2Weekday = function () {
     console.log('getData -> getPipe2Weekday')
     return PIPE2WEEKDAY
+}
+exports.setSettings = function (settings) {
+    console.log('setData -> setSettings')
+    LITERS = settings.settings.litersAlert;
+    TIMER = settings.settings.timerAlert;
+}
+exports.getSettings = function () {
+    var returnJSON = {
+        liters: LITERS,
+        timer: TIMER
+    }
+    console.log(returnJSON)
+    return returnJSON
 }
 
