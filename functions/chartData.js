@@ -314,14 +314,10 @@ exports.nowPipe1 = function () {
                 text: 'Current Usage - Pipe 1 (HH:MM:SS)'
             },
             tooltips: {
-                mode: 'index',
-                intersect: false,
-                display: false
+                enabled: false
             },
             hover: {
-                mode: 'nearest',
-                intersect: true,
-                display: false
+                mode: null
             },
             scales: {
                 yAxes: [{
@@ -368,14 +364,10 @@ exports.nowPipe2 = function () {
                 text: 'Current Usage - Pipe 2 (HH:MM:SS)'
             },
             tooltips: {
-                mode: 'index',
-                intersect: false,
-                display: false
+                enabled: false
             },
             hover: {
-                mode: 'nearest',
-                intersect: true,
-                display: false
+                mode: null
             },
             scales: {
                 yAxes: [{

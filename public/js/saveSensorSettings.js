@@ -20,7 +20,10 @@ function setSettings() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            M.toast({
+                html: 'Updated settings!',
+                classes: 'rounded'
+            })
         },
         failure: function (errMsg) {
             alert(errMsg);
@@ -33,8 +36,16 @@ function getSettings() {
         $('#minutes').val(data.timer);
         $('#liters').val(data.liters);
 
+        if (data.timer) {
+            $('#timerOpt').attr('selected', 'selected');
+        }
+
+        if (data.liters) {
+            $('#usageOpt').attr('selected', 'selected');
+        }
+
         $('.input-field label').addClass('active');
+        $('select').formSelect();
+        refreshInputs();
     });
-
-
 }

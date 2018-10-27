@@ -1,7 +1,9 @@
+var scrolling = false;
+var timer;
+var oldColor = "red";
+
 //initialize page
 $(document).ready(function () {
-    $('select').formSelect();
-    refreshInputs();
     sizeStackedCharts();
     $('.sidenav').sidenav();
 });
@@ -15,13 +17,11 @@ $(window).scroll(function () {
 });
 
 (function () {
-    //event handlers
     $("select").change(function () {
         refreshInputs();
     })
 
     $("input").focus(function () {
-        console.log("Handler for .focus() called.");
         INPUTCHANGE = true;
         $('.save-changes').removeClass('disabled');
     });
@@ -31,6 +31,7 @@ function refreshInputs() {
     $('.input-field').hide()
     $("select option:selected").each(function () {
         var val = ($(this).val());
+        console.log(val)
         $('.input-' + val + '-section').show()
     });
 }
@@ -57,11 +58,7 @@ function refreshGraphs() {
         html: 'Updated Graphs!',
         classes: 'rounded'
     })
-
 }
-
-var scrolling = false;
-var timer;
 
 function startPulse() {
     addPulse();
@@ -72,8 +69,6 @@ function startPulse() {
         removePulse();
     }, 800);
 }
-
-var oldColor = "red";
 
 function removePulse() {
     $('.pulse').removeClass(oldColor);
@@ -92,7 +87,7 @@ function randomColor() {
      'purple',
     'orange',
      'pink',
-    'lime', 'cyan','amber','deep-orange'
+    'lime', 'cyan','amber','deep-orange','indigo'
     ]
     var rando = chartColors[Math.floor(Math.random() * chartColors.length)]
     return rando;
