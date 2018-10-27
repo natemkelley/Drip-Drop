@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time, sys
 from time import sleep
 
-print('running')
 
 try:
 	GPIO.setmode(GPIO.BOARD)
@@ -17,8 +16,11 @@ try:
 	GPIO.output(40,GPIO.LOW)
 	sleep(0.25)
 	GPIO.output(40,GPIO.HIGH)
+	sleep(0.25)
+	GPIO.output(40,GPIO.LOW)
+	sleep(0.25)
+	GPIO.output(40,GPIO.HIGH)
 
 finally:
 	GPIO.cleanup()
 	
-print("dunzo")	
