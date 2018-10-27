@@ -25,8 +25,8 @@ function interpretMeter(data) {
     if (data.status == 500) {
         data.usage = 0;
     }
-    console.log('pipe1= '+data.usage)
-    getData.setCurrentPipe1(data.usage)
+    //console.log('pipe1= '+data.usage)
+    //getData.setCurrentPipe1(data.usage)
 }
 
 function updateSolenoidAlerts() {
