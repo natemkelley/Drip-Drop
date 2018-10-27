@@ -15,7 +15,6 @@ setInterval(function () {
     updatePipe2Now();
 }, 5000);
 
-
 function buildChart(params) {
     var ctx = document.getElementById(params.ctx);
     var myChart = new Chart(ctx, params);

@@ -77,7 +77,6 @@ exports.getPipe2AvMonth = function () {
     console.log('getData -> getPipe2AvMonth')
     return PIPE2AVMONTH
 }
-
 exports.setPipe1Weekday = function (data) {
     PIPE1WEEKDAY = data
     console.log('setData -> setPipe1Weekday')
@@ -86,7 +85,6 @@ exports.getPipe1Weekday = function () {
     console.log('getData -> getPipe1Weekday')
     return PIPE1WEEKDAY
 }
-
 exports.setPipe2Weekday = function (data) {
     PIPE2WEEKDAY = data
     console.log('setData -> setPipe2Weekday')

@@ -2,7 +2,6 @@
 var firebase = require('firebase');
 var compute = require('./compute.js');
 var fs = require('fs');
-var controlSensors = require('./controlSensors.js');
 var getData = require('./getData.js');
 
 //firebase config
