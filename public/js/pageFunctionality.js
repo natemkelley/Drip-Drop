@@ -10,6 +10,10 @@ $(window).resize(function () {
     sizeStackedCharts()
 });
 
+$(window).scroll(function () {
+    startPulse()
+});
+
 (function () {
     //event handlers
     $("select").change(function () {
@@ -60,4 +64,42 @@ function refreshGraphs() {
         classes: 'rounded'
     })
 
+}
+
+var scrolling = false;
+var timer;
+
+function startPulse() {
+    addPulse();
+    clearTimeout(timer); //cancel the previous timer.
+    timer = null;
+
+    timer = setTimeout(function () {
+        removePulse();
+    }, 800);
+}
+
+var oldColor = "red";
+
+function removePulse() {
+    $('.pulse').removeClass(oldColor);
+    var newColor = randomColor();
+    oldColor = newColor;
+}
+
+function addPulse() {
+    $('.pulse').addClass(oldColor)
+}
+
+function randomColor() {
+    var chartColors = [
+     'red',
+    'yellow',
+     'purple',
+    'orange',
+     'pink',
+    'lime', 'cyan','amber','deep-orange'
+    ]
+    var rando = chartColors[Math.floor(Math.random() * chartColors.length)]
+    return rando;
 }

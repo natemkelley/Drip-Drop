@@ -18,7 +18,6 @@ setInterval(function () {
 
 function buildChart(params) {
     var ctx = document.getElementById(params.ctx);
-    console.log(params.ctx)
     var myChart = new Chart(ctx, params);
 }
 
@@ -38,7 +37,6 @@ function loadBiggestDays() {
         url: "/chart-bigDay",
         dataType: "json",
         success: function (params) {
-            //console.log(params);
             buildChart(params)
         }
     });
@@ -49,7 +47,6 @@ function loadAvMonth() {
         url: "/chart-avMonth",
         dataType: "json",
         success: function (params) {
-            //console.log(params);
             buildChart(params)
         }
     });
@@ -60,7 +57,6 @@ function loadWeekDay() {
         url: "/chart-weekDay",
         dataType: "json",
         success: function (params) {
-            console.log(params);
             buildChart(params)
         }
     });
@@ -78,7 +74,6 @@ function loadTotalByPipe() {
 }
 
 function updateChart(params) {
-    console.log(myChart);
     var ctx = document.getElementById(params.ctx);
     var myChart = new Chart(ctx, params);
     myChart.update({
