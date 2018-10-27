@@ -105,7 +105,6 @@ exports.getSettings = function () {
         liters: LITERS,
         timer: TIMER
     }
-    console.log(returnJSON)
     return returnJSON
 }
 
