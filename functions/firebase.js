@@ -206,10 +206,11 @@ exports.inputNewDataPoint = function (data) {
 
 
 function cleanDatabase(data) {
-    console.log(data.pipe0);
+    var now = new Date().getTime();
     for (var key in data.pipe0) {
-        console.log(key)
+        if (key > now) {
+            console.log(key);
+            firebase.database().ref('pipe0/' + key).remove();
+        }
     }
-
-
 }
