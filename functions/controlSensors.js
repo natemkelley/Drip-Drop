@@ -12,7 +12,7 @@ var MINUTESINMILLI = 1000 * 60;
 var timer;
 
 function readMeter() {
-    var pyshell = new PythonShell('./python/meter-test.py');
+    var pyshell = new PythonShell('./python/meter.py');
     //pyshell.send('start');
     /*pyshell.on('message', function (message) {
         interpretMeter(message);
@@ -35,9 +35,10 @@ function readMeter() {
 function interpretMeter(data) {
     data = JSON.parse(data)
     if (data.status == 500) {
+    	  getData.setError(data.status);
         data.usage = 0;
     }
-    //console.log('pipe1= '+data.usage)
+    console.log('constrolSensors interpretMeter ->  '+data.usage)
     getData.setCurrentPipe1(data.usage)
 }
 

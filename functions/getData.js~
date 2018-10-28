@@ -159,7 +159,7 @@ exports.setError = function (data) {
 	var time = new Date();
    var errorJSON = {
 	error: 500,
-	time: time.getTime()
+	time: time.getTime();
    }
       console.log(errorJSON);
 }
