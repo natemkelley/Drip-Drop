@@ -2,6 +2,7 @@ let {
     PythonShell
 } = require('python-shell');
 var getData = require('./getData.js');
+var getData = require('./firebase.js');
 const fs = require('fs');
 
 var LITERS = 0;
@@ -43,6 +44,7 @@ function interpretMeter(data) {
     if (data.status == 500) {
         data.usage = 0;
     }
+    firebaseApp.inputNewDataPoint(data.usage);
     getData.setCurrentPipe1(data.usage);
     getData.setError(status);
     currentLiterUsage(data.usage);

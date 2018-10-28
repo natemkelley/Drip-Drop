@@ -179,3 +179,27 @@ exports.saveSettings = function (data) {
         }
     });
 }
+
+var DATAPOINTCOUNTER = 0;
+var LITERAGECOUNT = 0;
+exports.inputNewDataPoint = function (data) {
+    var roundedNum = Math.round((data / 12) * 100) / 100
+    LITERAGECOUNT += roundedNum
+    DATAPOINTCOUNTER++;
+
+    if (DATAPOINTCOUNTER == 11) {
+        var now = new Date().getTime();
+        var location = 'pipe0/' + now;
+
+        var jsonInput = {
+            liters: LITERAGECOUNT,
+            timestamp: now
+        }
+        console.log(jsonInput)
+
+        /*firebase.database().ref(location).set(jsonInput, function (error) {
+
+        });*/
+    }
+
+}
