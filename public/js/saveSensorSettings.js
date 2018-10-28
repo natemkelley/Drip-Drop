@@ -14,7 +14,6 @@ function setSettings() {
         litersAlert: $('#liters').val(),
         timerAlert: $('#minutes').val()
     }
-
     $.ajax({
         type: "POST",
         url: "changeAlert",
@@ -24,6 +23,35 @@ function setSettings() {
         success: function (data) {
             M.toast({
                 html: 'Updated settings!',
+                classes: 'rounded'
+            })
+        },
+        failure: function (errMsg) {
+            alert(errMsg);
+        }
+    });
+    changeFlowRate();
+}
+
+function changeFlowRate() {
+    var requireFlowJSON = {
+        required: true
+    }
+
+    var checkbox = $('.switch input:checkbox:checked');
+    if (checkbox.length) {
+        requireFlowJSON.required = false
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "requireWaterFlow",
+        data: JSON.stringify(requireFlowJSON),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            M.toast({
+                html: 'Saved Required Water Flow!',
                 classes: 'rounded'
             })
         },

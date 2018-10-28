@@ -11,15 +11,12 @@ var CURRENTLITERS = null;
 var CURRENTUSAGE = 0;
 var MINUTESINMILLI = 1000 * 60;
 var MOSTRECENTLITERAGE = 0;
+var REQUIREDFLOW = false;
 var timer;
 
+
+
 function readMeter() {
-    var pyshell = new PythonShell('./python/meter.py');
-    //pyshell.send('start');
-    /*pyshell.on('message', function (message) {
-        interpretMeter(message);
-        readMeter();
-    });*/
     let options = {
         mode: 'text',
         pythonOptions: ['-u'], // get print results in real-time
@@ -37,8 +34,8 @@ function readMeter() {
 function interpretMeter(data) {
     data = JSON.parse(data);
     var status = data.status;
-    
-    var logginNumber = Math.round((data.usage/12) * 100) / 100
+
+    var logginNumber = Math.round((data.usage / 12) * 100) / 100
     console.log('constrolSensors interpretMeter ->  ' + logginNumber)
 
     if (data.status == 500) {
@@ -67,7 +64,7 @@ function timerSolenoidAlert() {
         clearTimeout(timer); //cancel the previous timer.
         timer = null;
         timer = setInterval(function () {
-            if (MOSTRECENTLITERAGE > 0.25) {
+            if ((MOSTRECENTLITERAGE > 0.25) || REQUIREDFLOW) {
                 console.log("\nEXECUTE SOLENOID - TIMER\n")
                 executeSolenoid();
             }
@@ -107,6 +104,11 @@ function getSettings() {
 
 exports.getSettings = function () {
     getSettings();
+}
+exports.changeRequireFlow = function (data) {
+    console.log('controlSensors -> changeRequiredFlow');
+    console.log(data);
+    REQUIREDFLOW = data.required
 }
 getSettings();
 readMeter();

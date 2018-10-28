@@ -28,11 +28,13 @@ $(window).scroll(function () {
 }());
 
 function refreshInputs() {
-    $('.input-field').hide()
+    $('.input-field').hide();
+    $('.switch').hide()
     $("select option:selected").each(function () {
         var val = ($(this).val());
         console.log(val)
-        $('.input-' + val + '-section').show()
+        $('.input-' + val + '-section').show();
+        $('.switch').show();
     });
 }
 
@@ -87,7 +89,7 @@ function randomColor() {
      'purple',
     'orange',
      'pink',
-    'lime', 'cyan','amber','deep-orange','indigo'
+    'lime', 'cyan', 'amber', 'deep-orange', 'indigo'
     ]
     var rando = chartColors[Math.floor(Math.random() * chartColors.length)]
     return rando;

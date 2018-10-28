@@ -80,4 +80,15 @@ router.post('/changeAlert', function (req, res, next) {
     });
 });
 
+router.post('/requireWaterFlow', function (req, res, next) {
+    var receivedJSON = req.body;
+    controlSensors.changeRequireFlow(receivedJSON);
+
+    res.status(200).send({
+        success: "IT WORKED!"
+    });
+});
+
+//
+
 module.exports = router;
