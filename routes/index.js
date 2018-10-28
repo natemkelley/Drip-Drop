@@ -61,7 +61,7 @@ router.get('/getSettings', function (req, res, next) {
 
 router.get('/checkPipeError', function (req, res, next) {
     var status = getData.getError();
-    res.send(errors);
+    res.send(status);
 });
 
 router.post('/changeAlert', function (req, res, next) {
