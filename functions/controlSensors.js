@@ -36,7 +36,9 @@ function readMeter() {
 function interpretMeter(data) {
     data = JSON.parse(data);
     var status = data.status;
-    console.log('constrolSensors interpretMeter ->  ' + (data.usage/12))
+    
+    var logginNumber = Math.round((data.usage/12) * 100) / 100
+    console.log('constrolSensors interpretMeter ->  ' + logginNumber)
 
     if (data.status == 500) {
         data.usage = 0;
