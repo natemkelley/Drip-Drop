@@ -13,11 +13,11 @@ var timer;
 
 function readMeter() {
     var pyshell = new PythonShell('./python/meter-test.py');
-    pyshell.send('start');
-    pyshell.on('message', function (message) {
+    //pyshell.send('start');
+    /*pyshell.on('message', function (message) {
         interpretMeter(message);
         readMeter();
-    });
+    });*/
 }
 
 function interpretMeter(data) {
@@ -77,4 +77,4 @@ exports.getSettings = function () {
     getSettings();
 }
 getSettings();
-//readMeter();
+readMeter();
