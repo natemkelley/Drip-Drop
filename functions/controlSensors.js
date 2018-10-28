@@ -34,7 +34,7 @@ function readMeter() {
 
 function interpretMeter(data) {
     data = JSON.parse(data);
-    console.log(data)
+    console.log(data.status)
     if (data.status == 500) {
         data.usage = 0;
     }
