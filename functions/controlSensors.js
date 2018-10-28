@@ -2,7 +2,7 @@ let {
     PythonShell
 } = require('python-shell');
 var getData = require('./getData.js');
-var getData = require('./firebase.js');
+var firebaseApp = require('./firebase.js');
 const fs = require('fs');
 
 var LITERS = 0;
