@@ -112,7 +112,6 @@ exports.getSettings = function () {
 var CURRENTPIPE1 = [1, 2, 3, 1, 8];
 var CURRENTPIPE2 = [2, 0, 5, 1, 1];
 exports.setCurrentPipe1 = function (data) {
-    // var newDataPoint = randomScalingFactor();
     var newDataPoint = data;
     newDataPoint = Math.round(newDataPoint * 100) / 100;
     CURRENTPIPE1.push(newDataPoint);
@@ -156,10 +155,14 @@ exports.getCurrentPipe2 = function () {
     return CURRENTPIPE2
 }
 exports.setError = function (data) {
-	var time = new Date();
-   var errorJSON = {
-	error: 500,
-	time: time.getTime()
-   }
-      console.log(errorJSON);
+    var time = new Date();
+    var errorJSON = {
+        status: data.status,
+        time: time.getTime()
+    }
+    console.log(errorJSON);
+    ERROR = errorJSON;
+}
+exports.getError = function () {
+    return ERROR
 }

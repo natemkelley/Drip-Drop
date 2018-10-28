@@ -49,3 +49,11 @@ function getSettings() {
         refreshInputs();
     });
 }
+
+function checkPipeError() {
+    setInterval(function () {
+        $.getJSON('/checkPipeError', function (data) {
+            console.log(data);
+        });
+    }, 5000);
+}

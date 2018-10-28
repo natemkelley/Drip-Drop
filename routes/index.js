@@ -59,6 +59,11 @@ router.get('/getSettings', function (req, res, next) {
     res.send(settings);
 });
 
+router.get('/checkPipeError', function (req, res, next) {
+    var status = getData.getError();
+    res.send(errors);
+});
+
 router.post('/changeAlert', function (req, res, next) {
     var receivedJSON = req.body;
 

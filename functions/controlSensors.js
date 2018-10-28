@@ -33,13 +33,13 @@ function readMeter() {
 }
 
 function interpretMeter(data) {
-    data = JSON.parse(data)
+    data = JSON.parse(data);
     if (data.status == 500) {
-    	  getData.setError(data.status);
         data.usage = 0;
     }
-    console.log('constrolSensors interpretMeter ->  '+data.usage)
-    getData.setCurrentPipe1(data.usage)
+    console.log('constrolSensors interpretMeter ->  ' + data.usage)
+    getData.setCurrentPipe1(data.usage);
+    getData.setError(data.status);
 }
 
 function updateSolenoidAlerts() {
