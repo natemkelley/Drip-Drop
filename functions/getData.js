@@ -160,7 +160,6 @@ exports.setError = function (data) {
         status: data.status,
         time: time.getTime()
     }
-    console.log(errorJSON);
     ERROR = errorJSON;
 }
 exports.getError = function () {
