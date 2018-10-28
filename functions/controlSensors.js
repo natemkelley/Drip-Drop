@@ -9,6 +9,7 @@ var TIMER = 0;
 var CURRENTLITERS = null;
 var CURRENTUSAGE = 0;
 var MINUTESINMILLI = 1000 * 60;
+var MOSTRECENTLITERAGE = 0;
 var timer;
 
 function readMeter() {
@@ -46,11 +47,11 @@ function interpretMeter(data) {
 }
 
 function currentLiterUsage(data) {
+    MOSTRECENTLITERAGE = data;
     if (LITERS > 0) {
-        console.log(CURRENTLITERS);
         CURRENTLITERS += (data / 12)
         if (CURRENTLITERS > LITERS) {
-            console.log("\nEXECUTE SOLENOID\n")
+            console.log("\nEXECUTE SOLENOID - USAGE\n")
             executeSolenoid();
             CURRENTLITERS = 0;
         }
@@ -62,8 +63,10 @@ function timerSolenoidAlert() {
         clearTimeout(timer); //cancel the previous timer.
         timer = null;
         timer = setInterval(function () {
-            console.log("\nEXECUTE SOLENOID\n")
-            //executeSolenoid();
+            if (MOSTRECENTLITERAGE > 0.25) {
+                console.log("\nEXECUTE SOLENOID - TIMER\n")
+                executeSolenoid();
+            }
         }, TIMER * MINUTESINMILLI);
     }
 }
