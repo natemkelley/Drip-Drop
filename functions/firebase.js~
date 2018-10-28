@@ -32,6 +32,7 @@ rootRef.on("value", function (snapshot) {
 
 var tried = 0;
 var success = 0;
+
 function dummyData() {
     var jsondata = {};
     var year = 2018;
