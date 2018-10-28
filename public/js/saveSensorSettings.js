@@ -94,7 +94,7 @@ function getExecutingSolenoid() {
         console.log(data)
         if (data == true) {
             M.toast({
-                html: 'Meter Error! Inaccurate Reading.',
+                html: 'Executing Solenoid!',
                 classes: 'green accent-3 rounded'
             })
         }
