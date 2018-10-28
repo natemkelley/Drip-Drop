@@ -52,9 +52,25 @@ function getSettings() {
 }
 
 function checkPipeError() {
+    var showToast = true;
+
     setInterval(function () {
         $.getJSON('/checkPipeError', function (data) {
-            console.log(data);
+            if (data.status == 500) {
+                if (showToast) {
+                    M.toast({
+                        html: 'Meter Error! Inaccurate Reading.',
+                        classes: 'red darken-1 rounded'
+                    })
+                    showToast = false
+                }
+            }
         });
     }, 5000);
+
+    function updateShowTrue() {
+        setTimeout(function () {
+            showToast = true;
+        }, 9000);
+    }
 }

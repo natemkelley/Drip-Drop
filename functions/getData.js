@@ -155,10 +155,10 @@ exports.getCurrentPipe2 = function () {
     return CURRENTPIPE2
 }
 exports.setError = function (data) {
-    console.log('seteeeeeeeeeeeerrr ' +data.status)
+    console.log('seteeeeeeeeeeeerrr ' +data)
     var time = new Date();
     var errorJSON = {
-        status: data.status,
+        status: data,
         time: time.getTime()
     }
     ERROR = errorJSON;

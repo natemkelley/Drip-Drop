@@ -34,13 +34,13 @@ function readMeter() {
 
 function interpretMeter(data) {
     data = JSON.parse(data);
-    console.log(data.status)
+    var status = data.status;
     if (data.status == 500) {
         data.usage = 0;
     }
     console.log('constrolSensors interpretMeter ->  ' + data.usage)
     getData.setCurrentPipe1(data.usage);
-    getData.setError(data.status);
+    getData.setError(status);
 }
 
 function updateSolenoidAlerts() {
