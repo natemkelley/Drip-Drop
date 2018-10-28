@@ -24,7 +24,7 @@ function readMeter() {
         scriptPath: './python',
         args: [LITERS, TIMER, CURRENTUSAGE]
     };
-    PythonShell.run('meter-test.py', options, function (err, results) {
+    PythonShell.run('meter.py', options, function (err, results) {
         if (err) throw err;
         interpretMeter(results);
         readMeter();

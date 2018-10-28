@@ -35,7 +35,7 @@ function readMeter() {
 function interpretMeter(data) {
     data = JSON.parse(data)
     if (data.status == 500) {
-    	  console.log('error')
+    	  getData.setError(data.status);
         data.usage = 0;
     }
     console.log('constrolSensors interpretMeter ->  '+data.usage)
