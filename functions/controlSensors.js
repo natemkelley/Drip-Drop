@@ -49,7 +49,8 @@ function currentLiterUsage(data) {
     if (LITERS > 0) {
         console.log(CURRENTLITERS);
         CURRENTLITERS += (data / 12)
-        if(CURRENTLITERS>LITERS){
+        if (CURRENTLITERS > LITERS) {
+            console.log("\nEXECUTE SOLENOID\n")
             executeSolenoid();
             CURRENTLITERS = 0;
         }
@@ -60,15 +61,14 @@ function timerSolenoidAlert() {
     if (TIMER > 0) {
         clearTimeout(timer); //cancel the previous timer.
         timer = null;
-
         timer = setInterval(function () {
-            executeSolenoid();
+            console.log("\nEXECUTE SOLENOID\n")
+            //executeSolenoid();
         }, TIMER * MINUTESINMILLI);
     }
 }
 
 function executeSolenoid() {
-    console.log('execute solenoid')
     let options = {
         mode: 'text',
         pythonOptions: ['-u'], // get print results in real-time

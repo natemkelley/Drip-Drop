@@ -136,7 +136,6 @@ exports.setCurrentPipe2 = function () {
         CURRENTPIPE2[i] = CURRENTPIPE2[i + 1];
     }
     CURRENTPIPE2.pop();
-    console.log(CURRENTPIPE2)
     console.log('getData -> setCurrentPipe1')
 }
 exports.getCurrentPipe2 = function () {
