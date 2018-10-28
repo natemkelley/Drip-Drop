@@ -78,3 +78,25 @@ function checkPipeError() {
         }, 10000);
     }
 }
+
+function getExecutingSolenoid() {
+    setInterval(function () {
+        $.ajax({
+            url: 'executingSolenoid',
+            dataType: "json",
+            success: function (params) {
+                showToast(params)
+            }
+        });
+    }, 1100);
+
+    function showToast(data) {
+        console.log(data)
+        if (data == true) {
+            M.toast({
+                html: 'Meter Error! Inaccurate Reading.',
+                classes: 'green accent-3 rounded'
+            })
+        }
+    }
+}

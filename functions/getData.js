@@ -13,6 +13,7 @@ var PIPE2WEEKDAY = {}; //done
 var ERROR = {};
 var LITERS;
 var TIMER;
+var EXECUTING = false;
 
 exports.setWholeDataSet = function (data) {
     WHOLEDATASET = data
@@ -163,4 +164,13 @@ exports.setError = function (data) {
 }
 exports.getError = function () {
     return ERROR
+}
+exports.getExecutingSolenoid = function (data) {
+    return EXECUTING
+}
+exports.setExecutingSolenoid = function (data) {
+    EXECUTING = data
+    setTimeout(function () {
+        EXECUTING = false
+    }, 1200);
 }

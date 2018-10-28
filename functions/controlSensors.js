@@ -82,6 +82,7 @@ function executeSolenoid() {
         if (err) throw err;
         console.log(results);
     });
+    getData.setExecutingSolenoid(true);
 }
 
 function getSettings() {
