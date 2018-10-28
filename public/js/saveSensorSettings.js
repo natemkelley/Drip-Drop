@@ -1,6 +1,7 @@
 $(document).ready(function () {
     getSettings()
     checkPipeError();
+    getExecutingSolenoid();
 });
 
 $(".save-changes").click(function () {
