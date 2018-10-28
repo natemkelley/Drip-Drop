@@ -26,7 +26,8 @@ function readMeter() {
     };
     PythonShell.run('meter-test.py', options, function (err, results) {
         if (err) throw err;
-        console.log(results);
+        interpretMeter(results);
+        readMeter();
     });
 
 }
