@@ -66,6 +66,7 @@ function checkPipeError() {
                         classes: 'red darken-1 rounded'
                     })
                     showToast = false
+                    updateShowTrue();
                 }
             }
         });
@@ -74,6 +75,6 @@ function checkPipeError() {
     function updateShowTrue() {
         setTimeout(function () {
             showToast = true;
-        }, 9000);
+        }, 6000);
     }
 }
