@@ -92,7 +92,7 @@ function getExecutingSolenoid() {
         if (data == true) {
             M.toast({
                 html: 'Executing Solenoid!',
-                classes: 'green accent-3 rounded'
+                classes: 'green accent-4 rounded'
             })
         }
     }
