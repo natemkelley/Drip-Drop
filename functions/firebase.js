@@ -27,6 +27,7 @@ rootRef.on("value", function (snapshot) {
 
         compute.startCompute(pipes);
         getData.setSettings(settings);
+        cleanDatabase(pipes);
     }
 })
 
@@ -195,11 +196,20 @@ exports.inputNewDataPoint = function (data) {
             liters: LITERAGECOUNT,
             timestamp: now
         }
-        console.log(jsonInput)
 
-        /*firebase.database().ref(location).set(jsonInput, function (error) {
-
-        });*/
+        firebase.database().ref(location).set(jsonInput, function (error) {
+            console.log('logged current usage into database');
+            console.log(jsonInput)
+        });
     }
+}
+
+
+function cleanDatabase(data) {
+    console.log(data.pipe0);
+    for (var key in data.pipe0) {
+        console.log(key)
+    }
+
 
 }
