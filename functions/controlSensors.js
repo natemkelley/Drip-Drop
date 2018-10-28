@@ -36,7 +36,7 @@ function readMeter() {
 function interpretMeter(data) {
     data = JSON.parse(data);
     var status = data.status;
-    console.log('constrolSensors interpretMeter ->  ' + data.usage)
+    console.log('constrolSensors interpretMeter ->  ' + (data.usage/12))
 
     if (data.status == 500) {
         data.usage = 0;
@@ -80,7 +80,7 @@ function executeSolenoid() {
     };
     PythonShell.run('Solenoid.py', options, function (err, results) {
         if (err) throw err;
-        console.log(results);
+        //console.log(results);
     });
     getData.setExecutingSolenoid(true);
 }

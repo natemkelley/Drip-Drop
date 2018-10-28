@@ -120,7 +120,7 @@ exports.setCurrentPipe1 = function (data) {
         CURRENTPIPE1[i] = CURRENTPIPE1[i + 1];
     }
     CURRENTPIPE1.pop();
-    console.log('setCurrentPipe1')
+    console.log('getData -> setCurrentPipe1')
 }
 exports.getCurrentPipe1 = function () {
     console.log('getData -> getCurrentPipe1')
@@ -137,7 +137,7 @@ exports.setCurrentPipe2 = function () {
         CURRENTPIPE2[i] = CURRENTPIPE2[i + 1];
     }
     CURRENTPIPE2.pop();
-    console.log('getData -> setCurrentPipe1')
+    console.log('getData -> setCurrentPipe2')
 }
 exports.getCurrentPipe2 = function () {
     var max = 10;
