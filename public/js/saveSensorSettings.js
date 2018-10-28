@@ -52,10 +52,13 @@ function getSettings() {
 }
 
 function checkPipeError() {
+    console.log('checkPipeError');
     var showToast = true;
 
     setInterval(function () {
+        console.log('gettingCheckPipeError')
         $.getJSON('/checkPipeError', function (data) {
+            console.log(data)
             if (data.status == 500) {
                 if (showToast) {
                     M.toast({
