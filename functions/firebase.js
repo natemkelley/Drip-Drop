@@ -175,7 +175,7 @@ exports.saveSettings = function (data) {
             console.error(error);
             return 500
         } else {
-            console.log('200')
+            console.log('saving settings')
             return 200
         }
     });
@@ -199,7 +199,6 @@ exports.inputNewDataPoint = function (data) {
 
         firebase.database().ref(location).set(jsonInput, function (error) {
             console.log('logged current usage into database');
-            console.log(jsonInput)
         });
     }
 }
