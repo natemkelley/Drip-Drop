@@ -1,5 +1,6 @@
 $(document).ready(function () {
     getSettings()
+    checkPipeError();
 });
 
 $(".save-changes").click(function () {
