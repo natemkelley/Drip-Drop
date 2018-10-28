@@ -53,13 +53,10 @@ function getSettings() {
 }
 
 function checkPipeError() {
-    console.log('checkPipeError');
     var showToast = true;
 
     setInterval(function () {
-        console.log('gettingCheckPipeError')
         $.getJSON('/checkPipeError', function (data) {
-            console.log(data)
             if (data.status == 500) {
                 if (showToast) {
                     M.toast({
@@ -92,7 +89,6 @@ function getExecutingSolenoid() {
     }, 1100);
 
     function showToast(data) {
-        console.log(data)
         if (data == true) {
             M.toast({
                 html: 'Executing Solenoid!',
