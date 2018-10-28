@@ -32,6 +32,7 @@ rootRef.on("value", function (snapshot) {
 
 var tried = 0;
 var success = 0;
+
 function dummyData() {
     var jsondata = {};
     var year = 2018;
@@ -173,7 +174,7 @@ exports.saveSettings = function (data) {
             console.error(error);
             return 500
         } else {
-            console.log('saving settings')
+            console.log('200')
             return 200
         }
     });
@@ -197,6 +198,7 @@ exports.inputNewDataPoint = function (data) {
 
         firebase.database().ref(location).set(jsonInput, function (error) {
             console.log('logged current usage into database');
+            console.log(jsonInput)
         });
     }
 }
