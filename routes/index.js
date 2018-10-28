@@ -60,7 +60,7 @@ router.get('/getSettings', function (req, res, next) {
 });
 
 router.get('/checkPipeError', function (req, res, next) {
-    var status = getData.getGexecutingSolenoid();
+    var status = getData.getError();
     res.send(status);
 });
 
