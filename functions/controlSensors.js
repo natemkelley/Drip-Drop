@@ -18,6 +18,17 @@ function readMeter() {
         interpretMeter(message);
         readMeter();
     });*/
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: './python',
+        args: [LITERS, TIMER, CURRENTUSAGE]
+    };
+    PythonShell.run('meter-test.py', options, function (err, results) {
+        if (err) throw err;
+        console.log(results);
+    });
+
 }
 
 function interpretMeter(data) {
@@ -26,7 +37,7 @@ function interpretMeter(data) {
         data.usage = 0;
     }
     //console.log('pipe1= '+data.usage)
-    //getData.setCurrentPipe1(data.usage)
+    getData.setCurrentPipe1(data.usage)
 }
 
 function updateSolenoidAlerts() {
