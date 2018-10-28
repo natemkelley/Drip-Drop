@@ -35,24 +35,34 @@ function readMeter() {
 function interpretMeter(data) {
     data = JSON.parse(data);
     var status = data.status;
+    console.log('constrolSensors interpretMeter ->  ' + data.usage)
+
     if (data.status == 500) {
         data.usage = 0;
     }
-    console.log('constrolSensors interpretMeter ->  ' + data.usage)
     getData.setCurrentPipe1(data.usage);
     getData.setError(status);
+    currentLiterUsage(data.usage);
 }
 
-function updateSolenoidAlerts() {
+function currentLiterUsage(data) {
     if (LITERS > 0) {
-
+        console.log(CURRENTLITERS);
+        CURRENTLITERS += (data / 12)
+        if(CURRENTLITERS>LITERS){
+            executeSolenoid();
+            CURRENTLITERS = 0;
+        }
     }
+}
+
+function timerSolenoidAlert() {
     if (TIMER > 0) {
         clearTimeout(timer); //cancel the previous timer.
         timer = null;
 
         timer = setInterval(function () {
-            //executeSolenoid();
+            executeSolenoid();
         }, TIMER * MINUTESINMILLI);
     }
 }
@@ -83,7 +93,7 @@ function getSettings() {
         LITERS = settings.liters || null;
         TIMER = settings.timer || null;
         CHANGES = true;
-        updateSolenoidAlerts();
+        timerSolenoidAlert();
     }
 }
 
