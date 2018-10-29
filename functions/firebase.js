@@ -203,6 +203,7 @@ exports.inputNewDataPoint = function (data) {
 
 
 function cleanDatabase(data) {
+	console.log('cleaning database');
     var now = new Date().getTime();
     for (var key in data.pipe0) {
         if (key > now) {

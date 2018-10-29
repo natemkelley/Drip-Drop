@@ -107,7 +107,6 @@ exports.getSettings = function () {
 }
 exports.changeRequireFlow = function (data) {
     console.log('controlSensors -> changeRequiredFlow');
-    console.log(data);
     REQUIREDFLOW = data.required
 }
 getSettings();

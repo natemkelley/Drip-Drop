@@ -13,6 +13,7 @@ var PIPE2WEEKDAY = {}; //done
 var ERROR = {};
 var LITERS;
 var TIMER;
+var EXECUTING = false;
 
 exports.setWholeDataSet = function (data) {
     WHOLEDATASET = data
@@ -112,7 +113,6 @@ exports.getSettings = function () {
 var CURRENTPIPE1 = [1, 2, 3, 1, 8];
 var CURRENTPIPE2 = [2, 0, 5, 1, 1];
 exports.setCurrentPipe1 = function (data) {
-    // var newDataPoint = randomScalingFactor();
     var newDataPoint = data;
     newDataPoint = Math.round(newDataPoint * 100) / 100;
     CURRENTPIPE1.push(newDataPoint);
@@ -120,7 +120,7 @@ exports.setCurrentPipe1 = function (data) {
         CURRENTPIPE1[i] = CURRENTPIPE1[i + 1];
     }
     CURRENTPIPE1.pop();
-    console.log('setCurrentPipe1')
+    console.log('getData -> setCurrentPipe1')
 }
 exports.getCurrentPipe1 = function () {
     console.log('getData -> getCurrentPipe1')
@@ -137,8 +137,7 @@ exports.setCurrentPipe2 = function () {
         CURRENTPIPE2[i] = CURRENTPIPE2[i + 1];
     }
     CURRENTPIPE2.pop();
-    console.log(CURRENTPIPE2)
-    console.log('getData -> setCurrentPipe1')
+    console.log('getData -> setCurrentPipe2')
 }
 exports.getCurrentPipe2 = function () {
     var max = 10;
@@ -156,10 +155,22 @@ exports.getCurrentPipe2 = function () {
     return CURRENTPIPE2
 }
 exports.setError = function (data) {
-	var time = new Date();
-   var errorJSON = {
-	error: 500,
-	time: time.getTime();
-   }
-      console.log(errorJSON);
+    var time = new Date();
+    var errorJSON = {
+        status: data,
+        time: time.getTime()
+    }
+    ERROR = errorJSON;
+}
+exports.getError = function () {
+    return ERROR
+}
+exports.getExecutingSolenoid = function (data) {
+    return EXECUTING
+}
+exports.setExecutingSolenoid = function (data) {
+    EXECUTING = data
+    setTimeout(function () {
+        EXECUTING = false
+    }, 1200);
 }
