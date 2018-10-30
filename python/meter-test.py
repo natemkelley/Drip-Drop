@@ -4,7 +4,7 @@ import random
 import json
 
 constant = random.randint(0,1)
-rate_cnt = random.randint(0,15)
+rate_cnt = random.randint(0,12)
 minutes = random.randint(0,5)
 
 data = {}

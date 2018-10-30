@@ -37,8 +37,25 @@ function loadBiggestDays() {
         dataType: "json",
         success: function (params) {
             buildChart(params)
+            BiggestDays = params;
+            lengthOfDataset = params.data.datasets.length;
         }
     });
+
+    var BiggestDays = null;
+    var lengthOfDataset = 0;
+    var lengthCounter = 0;
+
+    $('.toggle-bigday').click(function () {
+        if (lengthCounter > lengthOfDataset) {
+            lengthCounter = 0;
+        }
+
+        var returnObject = jQuery.extend(true, {}, BiggestDays);;
+        returnObject.data.datasets.splice(lengthCounter,1);
+        updateChart(returnObject);
+        lengthCounter++;
+    })
 }
 
 function loadAvMonth() {

@@ -81,7 +81,6 @@ function executeSolenoid() {
     };
     PythonShell.run('Solenoid.py', options, function (err, results) {
         if (err) throw err;
-        //console.log(results);
     });
     getData.setExecutingSolenoid(true);
 }

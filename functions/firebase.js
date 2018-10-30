@@ -30,6 +30,7 @@ rootRef.on("value", function (snapshot) {
     }
 })
 
+
 var tried = 0;
 var success = 0;
 function dummyData() {
@@ -196,11 +197,14 @@ exports.inputNewDataPoint = function (data) {
         }
 
         firebase.database().ref(location).set(jsonInput, function (error) {
+            console.log(jsonInput);
             console.log('logged current usage into database');
         });
+        
+        DATAPOINTCOUNTER = 0;
+        LITERAGECOUNT = 0;
     }
 }
-
 
 function cleanDatabase(data) {
 	console.log('cleaning database');

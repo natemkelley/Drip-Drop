@@ -22,8 +22,12 @@ exports.returnWholeDataset = function (data) {
 
 async function pipesavtime30(data) {
     var pipes = pipeNames(data);
+    pipes.reverse()
     var returnJSON = {};
     var stagingArray = [];
+
+    console.log(pipes);
+
 
     for (var i = 0; i < pipes.length; i++) {
         var obj = data[pipes[i]];
@@ -34,7 +38,12 @@ async function pipesavtime30(data) {
         var theDailyAverage = 0;
         var theDailyTotal = 0;
         var dayCount = 0;
+        var sortedArrayLength = Object.keys(sortedObj).length - 1;
+        var keyCounter = 0;
+
         for (var key in sortedObj) {
+            keyCounter++;
+
             var date = createDate(sortedObj[key].timestamp);
             var objLiter = sortedObj[key].liters;
 
@@ -55,23 +64,35 @@ async function pipesavtime30(data) {
                 unique = true
             }
 
-            dataPointCount++
+            if (keyCounter == sortedArrayLength) {
+                var dayData = {
+                    date: checkDate,
+                    dayAverage: theDailyAverage
+                }
+                stagingArray[dayCount] = dayData;
+            }
+
+            dataPointCount++;
             theDailyTotal += objLiter;
             theDailyAverage = ((theDailyTotal) / dataPointCount);
             checkDate = date;
         }
 
+        //console.log('pipe' + i);
+        //console.log(limitTo30Days(stagingArray));
+
         returnJSON['pipe' + i] = limitTo30Days(stagingArray);
     }
 
+    //console.log(returnJSON.pipe0)
     getData.setPipe1AvTime30(returnJSON.pipe0);
     getData.setPipe2AvTime30(returnJSON.pipe1);
-
 
     function limitTo30Days(data) {
         var returnArry = data.slice(Math.max(data.length - 30, 1));
         return returnArry
     }
+
     function createDate(dateObj) {
         var dateObj = new Date(dateObj);
 
