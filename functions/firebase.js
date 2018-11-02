@@ -27,12 +27,14 @@ rootRef.on("value", function (snapshot) {
         compute.startCompute(pipes);
         getData.setSettings(settings);
         cleanDatabase(pipes);
+        recentDummyData();
     }
 })
 
 
 var tried = 0;
 var success = 0;
+
 function dummyData() {
     var jsondata = {};
     var year = 2018;
@@ -145,6 +147,51 @@ function dummyData() {
     }
 }
 
+function recentDummyData() {
+    var jsondata = {};
+    var year = 2018;
+
+    var currentTime = new Date().getTime();
+    var oneWeekAgo = currentTime - (1000 * 60 * 60 * 24 * 7);
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    for (pipe = 0; pipe < 2; pipe++) {
+        for (i = 0; i < 10; i++) {
+            var day = getRndInteger(oneWeekAgo, currentTime);
+            day = "pipe" + i + "/" + day
+            var literage = randomLiterage() * zeroOut()*zeroOut();
+
+            writeDummyData(day, literage);
+        }
+    }
+
+    function zeroOut() {
+        return Math.round(Math.random());
+    }
+
+    function randomLiterage() {
+        let maxLiterage = 10.6555;
+        let precision = 1000;
+        var returnVal = 0;
+        returnVal = Math.floor(Math.random() * (maxLiterage * precision - 1 * precision) + 1 * precision) / (1 * precision);
+
+        return returnVal
+    }
+
+    function writeDummyData(stringDot, data) {
+        firebase.database().ref(stringDot).set(data, function (error) {
+            if (error) {
+                console.log(error)
+            } else {
+                console.log("success")
+            }
+        });
+    }
+}
+
 function massInputDummyData() {
     for (xxx = 0; xxx < 15; xxx++) {
         setTimeout(function () {
@@ -197,16 +244,16 @@ exports.inputNewDataPoint = function (data) {
         }
 
         firebase.database().ref(location).set(jsonInput, function (error) {
-            console.log('logging into database -> '+JSON.stringify(jsonInput));
+            console.log('logging into database -> ' + JSON.stringify(jsonInput));
         });
-        
+
         DATAPOINTCOUNTER = 0;
         LITERAGECOUNT = 0;
     }
 }
 
 function cleanDatabase(data) {
-	console.log('cleaning database');
+    console.log('cleaning database');
     var now = new Date().getTime();
     for (var key in data.pipe0) {
         if (key > now) {
@@ -214,7 +261,7 @@ function cleanDatabase(data) {
             firebase.database().ref('pipe0/' + key).remove();
         }
     }
-        for (var key in data.pipe1) {
+    for (var key in data.pipe1) {
         if (key > now) {
             console.log(key);
             firebase.database().ref('pipe1/' + key).remove();

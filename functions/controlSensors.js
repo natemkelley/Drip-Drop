@@ -15,7 +15,6 @@ var REQUIREDFLOW = false;
 var timer;
 
 
-
 function readMeter() {
     let options = {
         mode: 'text',
@@ -36,7 +35,6 @@ function interpretMeter(data) {
     var status = data.status;
 
     var logginNumber = Math.round((data.usage / 12) * 100) / 100
-    //console.log(data.usage);
     console.log('constrolSensors interpretMeter ->  ' + logginNumber)
 
     if (data.status == 500) {
