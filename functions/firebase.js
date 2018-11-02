@@ -197,8 +197,7 @@ exports.inputNewDataPoint = function (data) {
         }
 
         firebase.database().ref(location).set(jsonInput, function (error) {
-            console.log(jsonInput);
-            console.log('logged current usage into database');
+            console.log('logging into database -> '+JSON.stringify(jsonInput));
         });
         
         DATAPOINTCOUNTER = 0;

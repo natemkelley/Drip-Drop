@@ -42,7 +42,7 @@ function interpretMeter(data) {
         data.usage = 0;
     }
     firebaseApp.inputNewDataPoint(data.usage);
-    getData.setCurrentPipe1(data.usage);
+    getData.setCurrentPipe1(logginNumber);
     getData.setError(status);
     currentLiterUsage(data.usage);
 }
@@ -81,7 +81,6 @@ function executeSolenoid() {
     };
     PythonShell.run('Solenoid.py', options, function (err, results) {
         if (err) throw err;
-        //console.log(results);
     });
     getData.setExecutingSolenoid(true);
 }
@@ -107,7 +106,6 @@ exports.getSettings = function () {
 }
 exports.changeRequireFlow = function (data) {
     console.log('controlSensors -> changeRequiredFlow');
-    console.log(data);
     REQUIREDFLOW = data.required
 }
 getSettings();

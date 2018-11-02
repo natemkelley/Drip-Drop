@@ -50,10 +50,7 @@ function changeFlowRate() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            M.toast({
-                html: 'Saved Required Water Flow!',
-                classes: 'rounded'
-            })
+				console.log('flow rate req changed')
         },
         failure: function (errMsg) {
             alert(errMsg);

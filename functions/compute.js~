@@ -26,6 +26,7 @@ async function pipesavtime30(data) {
     var returnJSON = {};
     var stagingArray = [];
 
+    console.log(pipes);
 
 
     for (var i = 0; i < pipes.length; i++) {

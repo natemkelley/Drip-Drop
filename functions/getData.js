@@ -110,8 +110,8 @@ exports.getSettings = function () {
 
 
 //currentData
-var CURRENTPIPE1 = [1, 2, 3, 1, 8];
-var CURRENTPIPE2 = [2, 0, 5, 1, 1];
+var CURRENTPIPE1 = [1, 1, 1, 1, 1];
+var CURRENTPIPE2 = [0, 0, 0, 1, 1];
 exports.setCurrentPipe1 = function (data) {
     var newDataPoint = data;
     newDataPoint = Math.round(newDataPoint * 100) / 100;
@@ -172,5 +172,5 @@ exports.setExecutingSolenoid = function (data) {
     EXECUTING = data
     setTimeout(function () {
         EXECUTING = false
-    }, 1200);
+    }, 1100);
 }

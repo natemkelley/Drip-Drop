@@ -36,13 +36,14 @@ function interpretMeter(data) {
     var status = data.status;
 
     var logginNumber = Math.round((data.usage / 12) * 100) / 100
+    console.log(data.usage);
     console.log('constrolSensors interpretMeter ->  ' + logginNumber)
 
     if (data.status == 500) {
         data.usage = 0;
     }
     firebaseApp.inputNewDataPoint(data.usage);
-    getData.setCurrentPipe1(data.usage);
+    getData.setCurrentPipe1(logginNumber);
     getData.setError(status);
     currentLiterUsage(data.usage);
 }

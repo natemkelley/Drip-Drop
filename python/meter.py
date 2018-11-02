@@ -25,7 +25,7 @@ while dunzo:
     data['usage'] = round(rate_cnt * constant,4)
     data['cycle'] = minutes
     
-    if(data['usage']>8):
+    if(data['usage']>7.15):
         data['status']='500'
     json_data = json.dumps(data)
     print(json_data)
