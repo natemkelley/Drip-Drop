@@ -22,5 +22,4 @@ try:
 	GPIO.output(40,GPIO.HIGH)
 
 finally:
-	GPIO.cleanup()
-	
+        print('')
