@@ -52,6 +52,7 @@ async function pipesavtime30(data) {
                         date: checkDate,
                         dayAverage: theDailyAverage
                     }
+                    console.log(dayData)
                     stagingArray[dayCount] = dayData
                     dayCount++;
                     theDailyAverage = 0;

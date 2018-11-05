@@ -24,10 +24,11 @@ rootRef.on("value", function (snapshot) {
         var pipes = makePipes(snapshot.val());
         var settings = makeSettings(snapshot.val())
 
-        compute.startCompute(pipes);
-        getData.setSettings(settings);
-        cleanDatabase(pipes);
+        //compute.startCompute(pipes);
+        //getData.setSettings(settings);
+        //cleanDatabase(pipes);
         recentDummyData();
+        //deleteRecentDummyData(pipes);
     }
 })
 
@@ -148,23 +149,37 @@ function dummyData() {
 }
 
 function recentDummyData() {
+	
     var jsondata = {};
     var year = 2018;
 
     var currentTime = new Date().getTime();
-    var oneWeekAgo = currentTime - (1000 * 60 * 60 * 24 * 7);
+    var oneWeekAgo = currentTime - (1000 * 60 * 60 * 24 * 9);
 
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
     for (pipe = 0; pipe < 2; pipe++) {
-        for (i = 0; i < 10; i++) {
+        for (i = 1; i < 5; i++) {
             var day = getRndInteger(oneWeekAgo, currentTime);
-            day = "pipe" + i + "/" + day
+            inputLocation = "/pipe" + pipe + "/" + day
             var literage = randomLiterage() * zeroOut()*zeroOut();
-
-            writeDummyData(day, literage);
+				var data = {
+                            liters: literage,
+                            timestamp: day
+            }            
+            
+            //writeDummyData(inputLocation, data);
+        /*firebase.database().ref(inputLocation).set(data, function (error) {
+            if (error) {
+                console.log(error)
+            } else {
+                console.log("success")
+            }
+        })            */
+            
+            console.log(i)
         }
     }
 
@@ -173,7 +188,7 @@ function recentDummyData() {
     }
 
     function randomLiterage() {
-        let maxLiterage = 10.6555;
+        let maxLiterage = 3.6555;
         let precision = 1000;
         var returnVal = 0;
         returnVal = Math.floor(Math.random() * (maxLiterage * precision - 1 * precision) + 1 * precision) / (1 * precision);
@@ -182,14 +197,34 @@ function recentDummyData() {
     }
 
     function writeDummyData(stringDot, data) {
+    	//console.log(stringDot)
+    	//console.log(data);
         firebase.database().ref(stringDot).set(data, function (error) {
             if (error) {
                 console.log(error)
             } else {
                 console.log("success")
             }
-        });
+        })
     }
+}
+
+function deleteRecentDummyData(data){
+    console.log('cleaning dummy data');
+    var sevendaysago = new Date().getTime() - (1000*60*60*24*9);
+    for (var key in data.pipe0) {
+        if (key > sevendaysago) {
+				console.log(key)
+            firebase.database().ref('pipe0/' + key).remove();
+        }
+    }
+    for (var key in data.pipe1) {
+        if (key > sevendaysago) {
+
+            firebase.database().ref('pipe1/' + key).remove();
+        }
+    }
+
 }
 
 function massInputDummyData() {
