@@ -51,7 +51,7 @@ function currentLiterUsage(data) {
     if (LITERS > 0) {
         CURRENTLITERS += (data / 12)
         if (CURRENTLITERS > LITERS) {
-            console.log("\n*EXECUTE SOLENOID - USAGE*\n")
+            console.log("*\n*\n*EXECUTE SOLENOID - USAGE*\n*\n*")
             executeSolenoid();
             CURRENTLITERS = 0;
         }
@@ -64,7 +64,7 @@ function timerSolenoidAlert() {
         timer = null;
         timer = setInterval(function () {
             if ((MOSTRECENTLITERAGE > 0.25) || REQUIREDFLOW) {
-                console.log("\nEXECUTE SOLENOID - TIMER\n")
+                console.log("*\n*\nEXECUTE SOLENOID - TIMER\n*\n*")
                 executeSolenoid();
             }
         }, TIMER * MINUTESINMILLI);

@@ -35,7 +35,7 @@ function interpretMeter(data) {
     var status = data.status;
 
     var logginNumber = Math.round((data.usage / 12) * 100) / 100
-    console.log('constrolSensors interpretMeter ->  ' + logginNumber + " read num ->"+ data.usage)
+    console.log('constrolSensors interpretMeter ->  ' + logginNumber + " read num -> "+ data.usage)
 
     if (data.status == 500) {
         data.usage = 0;
@@ -64,7 +64,7 @@ function timerSolenoidAlert() {
         timer = null;
         timer = setInterval(function () {
             if ((MOSTRECENTLITERAGE > 0.25) || REQUIREDFLOW) {
-                console.log("\nEXECUTE SOLENOID - TIMER\n")
+                console.log("*\n*\nEXECUTE SOLENOID - TIMER\n*\n*")
                 executeSolenoid();
             }
         }, TIMER * MINUTESINMILLI);
