@@ -5,7 +5,7 @@ var path = require('path');
 const fs = require('fs');
 var bodyParser = require('body-parser');
 var app = express();
-var port = 80;
+var port = 3000;
 
 //config
 var bodyParser = require('body-parser');

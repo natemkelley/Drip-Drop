@@ -35,7 +35,7 @@ function interpretMeter(data) {
     var status = data.status;
 
     var logginNumber = Math.round((data.usage / 12) * 100) / 100
-    console.log('constrolSensors interpretMeter ->  ' + logginNumber)
+    console.log('constrolSensors interpretMeter ->  ' + logginNumber + " read num ->"+ data.usage)
 
     if (data.status == 500) {
         data.usage = 0;
@@ -51,7 +51,7 @@ function currentLiterUsage(data) {
     if (LITERS > 0) {
         CURRENTLITERS += (data / 12)
         if (CURRENTLITERS > LITERS) {
-            console.log("\nEXECUTE SOLENOID - USAGE\n")
+            console.log("\n*EXECUTE SOLENOID - USAGE*\n")
             executeSolenoid();
             CURRENTLITERS = 0;
         }

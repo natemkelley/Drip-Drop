@@ -24,13 +24,13 @@ rootRef.on("value", function (snapshot) {
         var pipes = makePipes(snapshot.val());
         var settings = makeSettings(snapshot.val())
 
-        //compute.startCompute(pipes);
-        //getData.setSettings(settings);
+        compute.startCompute(pipes);
+        getData.setSettings(settings);
         cleanDatabase(pipes);
     }
 })
 
-massInputDummyData();
+//massInputDummyData();
 
 var tried = 0;
 var success = 0;

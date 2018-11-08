@@ -301,6 +301,5 @@ function cleanDatabase(data) {
                 firebase.database().ref('pipe1/' + key).remove();
             }
         }
-        console.log('cleaned database');
     }, 3000);
 }

@@ -98,7 +98,7 @@ function checkPipeError() {
     function updateShowTrue() {
         setTimeout(function () {
             showToast = true;
-        }, 10000);
+        }, 13000);
     }
 }
 

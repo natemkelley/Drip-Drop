@@ -35,7 +35,7 @@ function interpretMeter(data) {
     var status = data.status;
 
     var logginNumber = Math.round((data.usage / 12) * 100) / 100
-    console.log('constrolSensors interpretMeter ->  ' + logginNumber)
+    console.log('constrolSensors interpretMeter ->  ' + logginNumber + " read num -> "+ data.usage)
 
     if (data.status == 500) {
         data.usage = 0;
