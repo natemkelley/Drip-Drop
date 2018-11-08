@@ -51,7 +51,9 @@ function dummyData() {
                         var hour = randomHour();
                         
                         if(month==10){
-                            day = Math.floor(Math.random() * 4) + 0;
+                        	var picker = new Date().getDate() +1;
+                            day = Math.floor(Math.random() * picker) + 0;
+                            console.log(day);
                         }
 
                         var d = new Date(year, month, day, hour, minute, second, 0);
@@ -176,15 +178,6 @@ function recentDummyData() {
             }
 
             writeDummyData(inputLocation, data);
-            /*firebase.database().ref(inputLocation).set(data, function (error) {
-                if (error) {
-                    console.log(error)
-                } else {
-                    console.log("success")
-                }
-            })            */
-
-            console.log(i)
         }
     }
 
@@ -293,7 +286,7 @@ exports.inputNewDataPoint = function (data) {
 }
 
 function cleanDatabase(data) {
-    console.log('cleaning database');
+    //console.log('cleaning database');
     setTimeout(function () {
         var now = new Date().getTime();
         for (var key in data.pipe0) {

@@ -51,7 +51,7 @@ function currentLiterUsage(data) {
     if (LITERS > 0) {
         CURRENTLITERS += (data / 12)
         if (CURRENTLITERS > LITERS) {
-            console.log("\nEXECUTE SOLENOID - USAGE\n")
+            console.log("\n*EXECUTE SOLENOID - USAGE*\n")
             executeSolenoid();
             CURRENTLITERS = 0;
         }
@@ -82,6 +82,20 @@ function executeSolenoid() {
         if (err) throw err;
     });
     getData.setExecutingSolenoid(true);
+    turnOnSolenoid();
+}
+
+
+function turnOnSolenoid(){
+	    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: './python',
+        args: [LITERS, TIMER, CURRENTUSAGE]
+    };
+    PythonShell.run('turnOnSolenoid.py', options, function (err, results) {
+        if (err) throw err;
+    });
 }
 
 function getSettings() {
@@ -109,3 +123,4 @@ exports.changeRequireFlow = function (data) {
 }
 getSettings();
 readMeter();
+turnOnSolenoid();

@@ -15,7 +15,6 @@ var REQUIREDFLOW = false;
 var timer;
 
 
-
 function readMeter() {
     let options = {
         mode: 'text',
@@ -36,7 +35,6 @@ function interpretMeter(data) {
     var status = data.status;
 
     var logginNumber = Math.round((data.usage / 12) * 100) / 100
-    console.log(data.usage);
     console.log('constrolSensors interpretMeter ->  ' + logginNumber)
 
     if (data.status == 500) {
@@ -84,6 +82,20 @@ function executeSolenoid() {
         if (err) throw err;
     });
     getData.setExecutingSolenoid(true);
+    turnOnSolenoid();
+}
+
+
+function turnOnSolenoid(){
+	    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: './python',
+        args: [LITERS, TIMER, CURRENTUSAGE]
+    };
+    PythonShell.run('turnOnSolenoid.py', options, function (err, results) {
+        if (err) throw err;
+    });
 }
 
 function getSettings() {
@@ -111,3 +123,4 @@ exports.changeRequireFlow = function (data) {
 }
 getSettings();
 readMeter();
+turnOnSolenoid();
